@@ -1,1 +1,22 @@
-/node_modules
+# Dependencies
+node_modules/
+
+# Build output and caches
+dist/
+.cache/
+*.tsbuildinfo
+
+# WordPress export (WXR) - contains author emails, never commit
+_source/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# OS / editor
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.log
