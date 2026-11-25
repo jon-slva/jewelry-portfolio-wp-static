@@ -1,0 +1,38 @@
+{
+  "items": [
+    "disney-stitch-necklace",
+    "reza-spirale-ring",
+    "reza-yosun-tilted-a-ring",
+    "reza-ruban-ring",
+    "moldavite-cushion-earrings",
+    "chasm-skull-ring",
+    "the-little-mermaid-tentacle-ring",
+    "cushion-ruby-cluster-ring",
+    "smoky-quartz-monolith-necklace",
+    "the-princes-the-frog-ring",
+    "emerald-earrings",
+    "golden-halo-engagement-ring",
+    "crocodile-necklace",
+    "cosmea-diamond-ring",
+    "warcraft-doomhammer",
+    "vincent-castiglia-the-sleep-necklace",
+    "pear-ring-w-oval-halo",
+    "wall-e-necklace",
+    "large-gold-halo-ring",
+    "floating-octahedron-ring",
+    "ruby-twist-ring",
+    "emerald-pear-diamond-cluster-ring",
+    "fractured-skull-necklace",
+    "stanislav-krawczyk-skull-ring",
+    "amethyst-geode-ring",
+    "emerald-lip-ring",
+    "ribbon-engagement-ring"
+  ],
+  "columns": {
+    "wide": 5,
+    "desktop": 3,
+    "tablet": 2,
+    "phone": 1
+  },
+  "gap": 10
+}

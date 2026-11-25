@@ -4,3 +4,5 @@ _source/
 .react-router/
 docs/
 package-lock.json
+# Content files are written by the importer and the admin in a fixed format
+src/content/**/*.json

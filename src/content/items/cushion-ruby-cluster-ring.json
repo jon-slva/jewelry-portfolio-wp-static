@@ -1,0 +1,62 @@
+{
+  "title": "Cushion Ruby Cluster Ring",
+  "slug": "cushion-ruby-cluster-ring",
+  "subtitle": "",
+  "date": "2023-06-18",
+  "draft": false,
+  "featured": false,
+  "categories": [
+    "fine"
+  ],
+  "tags": [],
+  "description": "",
+  "software": [
+    "Rhinoceros 3D",
+    "Matrix",
+    "Vray"
+  ],
+  "client": "Private client",
+  "cover": "media/cushion-ruby-cluster-ring/cushion-ruby-ring-thumb-small.jpg",
+  "layout": {
+    "type": "masonry",
+    "columns": 3
+  },
+  "media": [
+    {
+      "type": "image",
+      "file": "media/cushion-ruby-cluster-ring/cushion-ruby-ring-persp.png",
+      "alt": "Cushion Ruby Cluster Ring – view 1",
+      "size": "large"
+    },
+    {
+      "type": "image",
+      "file": "media/cushion-ruby-cluster-ring/cushion-ruby-ring-thumb.png",
+      "alt": "Cushion Ruby Cluster Ring – view 2",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/cushion-ruby-cluster-ring/cushion-ruby-ring-top.png",
+      "alt": "Cushion Ruby Cluster Ring – view 3",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/cushion-ruby-cluster-ring/cushion-ruby-ring-front.png",
+      "alt": "Cushion Ruby Cluster Ring – view 4",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/cushion-ruby-cluster-ring/cushion-ruby-ring-showcase-2.png",
+      "alt": "Cushion Ruby Cluster Ring – view 5",
+      "size": "large"
+    },
+    {
+      "type": "image",
+      "file": "media/cushion-ruby-cluster-ring/cushion-ruby-ring-side.png",
+      "alt": "Cushion Ruby Cluster Ring – view 6",
+      "size": "normal"
+    }
+  ]
+}

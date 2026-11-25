@@ -1,0 +1,76 @@
+{
+  "title": "Stitch Playing Guitar",
+  "slug": "disney-stitch-necklace",
+  "subtitle": "Rocklove X Disney",
+  "date": "2023-06-19",
+  "draft": false,
+  "featured": false,
+  "categories": [
+    "ent-jewelry",
+    "sculpture"
+  ],
+  "tags": [
+    "disney",
+    "rocklove-jewelry"
+  ],
+  "description": "One of a collection of Lilo & Stitch officially licensed jewelry I did. Designed by Rocklove in collaboration with Disney. I happen to be a guitarist myself, so this one was easily a favorite of mine.",
+  "software": [
+    "Zbrush"
+  ],
+  "client": "Disney, Rocklove",
+  "cover": "media/disney-stitch-necklace/color-stitch-guitar-front.jpg",
+  "layout": {
+    "type": "masonry",
+    "columns": 3
+  },
+  "media": [
+    {
+      "type": "image",
+      "file": "media/disney-stitch-necklace/color-stitch-guitar-front.jpg",
+      "alt": "Stitch Playing Guitar – view 1",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/disney-stitch-necklace/metal-stitch-guitar-tilt-left.jpg",
+      "alt": "Stitch Playing Guitar – view 2",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/disney-stitch-necklace/metal-stitch-guitar-tilt-right.jpg",
+      "alt": "Stitch Playing Guitar – view 3",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/disney-stitch-necklace/merge_view_1406x1920.jpg",
+      "alt": "Stitch Playing Guitar – view 4",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/disney-stitch-necklace/clay-stitch-guitar-tilt-left.jpg",
+      "alt": "Stitch Playing Guitar – view 5",
+      "size": "large"
+    },
+    {
+      "type": "image",
+      "file": "media/disney-stitch-necklace/01_stitchnecklace1_540x.webp",
+      "alt": "Stitch Playing Guitar – view 6",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/disney-stitch-necklace/clay-stitch-guitar-front.jpg",
+      "alt": "Stitch Playing Guitar – view 7",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/disney-stitch-necklace/clay-stitch-guitar-tilt-right.jpg",
+      "alt": "Stitch Playing Guitar – view 8",
+      "size": "normal"
+    }
+  ]
+}

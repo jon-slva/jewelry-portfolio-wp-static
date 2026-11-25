@@ -1,0 +1,74 @@
+{
+  "title": "Vincent Castiglia “The Sleep” Necklace",
+  "slug": "vincent-castiglia-the-sleep-necklace",
+  "subtitle": "Intenebris X Vincent Castiglia",
+  "date": "2023-06-13",
+  "draft": false,
+  "featured": false,
+  "categories": [
+    "art",
+    "sculpture"
+  ],
+  "tags": [
+    "artist-collaboration",
+    "fashion",
+    "intenebris"
+  ],
+  "description": "This is one of my more proud accomplishments. Vincent Castiglia is a world renowned tattoo artist and painter. I was fortunate enough that he agreed to 3 signature pieces of jewelry, based on 3 of his most well known pieces. The Sleep was the first of these. I also went on to create 12\" tall limited edition sculptures of these pieces as well (pictured last). This was one of my earliest highly technical projects and was tremendously helpful in getting my brand recognized in the fashion and art worlds. I would go on to collaborate with more artists because of this piece.",
+  "software": [
+    "Zbrush",
+    "Rhinoceros 3D",
+    "Matrix",
+    "Formlabs Form 3 3D Printer"
+  ],
+  "client": "Intenebris, Vincent Castiglia",
+  "cover": "media/vincent-castiglia-the-sleep-necklace/the-sleep-necklace-front-1-thumb.jpg",
+  "layout": {
+    "type": "masonry",
+    "columns": 3
+  },
+  "media": [
+    {
+      "type": "image",
+      "file": "media/vincent-castiglia-the-sleep-necklace/3d7a6421.jpg",
+      "alt": "Vincent Castiglia “The Sleep” Necklace – view 1",
+      "size": "large"
+    },
+    {
+      "type": "image",
+      "file": "media/vincent-castiglia-the-sleep-necklace/the-sleep-necklace-quarter-left.jpg",
+      "alt": "Vincent Castiglia “The Sleep” Necklace – view 2",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/vincent-castiglia-the-sleep-necklace/the-sleep-necklace-front-1.jpg",
+      "alt": "Vincent Castiglia “The Sleep” Necklace – view 3",
+      "size": "large"
+    },
+    {
+      "type": "image",
+      "file": "media/vincent-castiglia-the-sleep-necklace/merge_view_1406x1920-2.png",
+      "alt": "Vincent Castiglia “The Sleep” Necklace – view 4",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/vincent-castiglia-the-sleep-necklace/the-sleep1.jpg",
+      "alt": "Vincent Castiglia “The Sleep” Necklace – view 5",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/vincent-castiglia-the-sleep-necklace/19417352_795477087283230_487593144177698826_o.jpg",
+      "alt": "Vincent Castiglia “The Sleep” Necklace – view 6",
+      "size": "large"
+    },
+    {
+      "type": "youtube",
+      "id": "e69zDtjp4b8",
+      "title": "Vincent Castiglia “The Sleep” Necklace – video",
+      "size": "normal"
+    }
+  ]
+}

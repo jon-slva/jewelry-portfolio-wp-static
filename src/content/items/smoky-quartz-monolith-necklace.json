@@ -1,0 +1,47 @@
+{
+  "title": "Smoky Quartz Monolith Necklace",
+  "slug": "smoky-quartz-monolith-necklace",
+  "subtitle": "Intenebris",
+  "date": "2023-06-17",
+  "draft": false,
+  "featured": false,
+  "categories": [
+    "fashion-jewelry"
+  ],
+  "tags": [
+    "fashion",
+    "intenebris",
+    "modern"
+  ],
+  "description": "This piece required a lot of research, prototyping, and searching for a very competent lapidary. I was buying huge crystals of Smoky Himalayan Quartz, and had little room for error. After several months of tests, I ended with this 7-piece setting and custom cut spike. I also took the product photography, and the matte black background you see here.",
+  "software": [
+    "Rhinoceros 3D",
+    "Matrix"
+  ],
+  "client": "Intenebris",
+  "cover": "media/smoky-quartz-monolith-necklace/monolith-necklace-overhead-thumb.jpg",
+  "layout": {
+    "type": "masonry",
+    "columns": 3
+  },
+  "media": [
+    {
+      "type": "image",
+      "file": "media/smoky-quartz-monolith-necklace/monolith-necklace-intenebris-closeup.jpg",
+      "alt": "Smoky Quartz Monolith Necklace – view 1",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/smoky-quartz-monolith-necklace/monolith-necklace-overhead-crop.jpg",
+      "alt": "Smoky Quartz Monolith Necklace – view 2",
+      "size": "large"
+    },
+    {
+      "type": "image",
+      "file": "media/smoky-quartz-monolith-necklace/monolith-necklace-overhead-full-res.jpg",
+      "alt": "Smoky Quartz Monolith Necklace – view 3",
+      "size": "normal"
+    }
+  ]
+}

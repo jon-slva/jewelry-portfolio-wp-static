@@ -1,0 +1,69 @@
+{
+  "title": "Reza Ruban Ring",
+  "slug": "reza-ruban-ring",
+  "subtitle": "",
+  "date": "2023-07-21",
+  "draft": false,
+  "featured": false,
+  "categories": [
+    "fine"
+  ],
+  "tags": [],
+  "description": "",
+  "software": [
+    "Rhinoceros 3D",
+    "Matrix",
+    "Vray",
+    "Grasshopper"
+  ],
+  "client": "Reza International Inc.",
+  "cover": "media/reza-ruban-ring/thumb-1.jpg",
+  "layout": {
+    "type": "masonry",
+    "columns": 2
+  },
+  "media": [
+    {
+      "type": "image",
+      "file": "media/reza-ruban-ring/1.png",
+      "alt": "Reza Ruban Ring – view 1",
+      "size": "large"
+    },
+    {
+      "type": "image",
+      "file": "media/reza-ruban-ring/2.png",
+      "alt": "Reza Ruban Ring – view 2",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/reza-ruban-ring/4.png",
+      "alt": "Reza Ruban Ring – view 3",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/reza-ruban-ring/5.png",
+      "alt": "Reza Ruban Ring – view 4",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/reza-ruban-ring/3.png",
+      "alt": "Reza Ruban Ring – view 5",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/reza-ruban-ring/011_ring-ruban-whitegold-pinksapphire_whitediamond-hero.webp",
+      "alt": "Reza Ruban Ring – view 6",
+      "size": "large"
+    },
+    {
+      "type": "image",
+      "file": "media/reza-ruban-ring/012_ring-ruban-whitegold-whitediamond-side.webp",
+      "alt": "Reza Ruban Ring – view 7",
+      "size": "large"
+    }
+  ]
+}

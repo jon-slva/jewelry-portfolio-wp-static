@@ -1,0 +1,65 @@
+{
+  "title": "Wall-E Necklace",
+  "slug": "wall-e-necklace",
+  "subtitle": "Rocklove X Pixar",
+  "date": "2023-06-13",
+  "draft": false,
+  "featured": false,
+  "categories": [
+    "ent-jewelry",
+    "sculpture"
+  ],
+  "tags": [
+    "pixar",
+    "rocklove-jewelry"
+  ],
+  "description": "A piece in the likeness of everybody's favorite robot - Wall-E. Officially licensed Pixar jewelry, designed by Rocklove Jewelry.",
+  "software": [
+    "Zbrush",
+    "Rhinoceros 3D",
+    "Matrix"
+  ],
+  "client": "Pixar, Rocklove",
+  "cover": "media/wall-e-necklace/wall-e-render-2-2.jpg",
+  "layout": {
+    "type": "stacked"
+  },
+  "media": [
+    {
+      "type": "image",
+      "file": "media/wall-e-necklace/wall-e-render-2-2.jpg",
+      "alt": "Wall-E Necklace – view 1",
+      "size": "large"
+    },
+    {
+      "type": "image",
+      "file": "media/wall-e-necklace/wall-e-render-shoe.jpg",
+      "alt": "Wall-E Necklace – view 2",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/wall-e-necklace/03_pixarwall-e1_1800x1800.jpg",
+      "alt": "Wall-E Necklace – view 3",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/wall-e-necklace/06_pixarxrocklovewallelifestyleimages_6of6_1800x1800.jpg",
+      "alt": "Wall-E Necklace – view 4",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/wall-e-necklace/08_pixarxrocklovewallelifestyleimages_5of6_1800x1800.jpg",
+      "alt": "Wall-E Necklace – view 5",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/wall-e-necklace/10_pixarxrocklovewallemodelimages_1of3_1800x1800.jpg",
+      "alt": "Wall-E Necklace – view 6",
+      "size": "normal"
+    }
+  ]
+}

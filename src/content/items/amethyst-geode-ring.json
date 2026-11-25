@@ -1,0 +1,71 @@
+{
+  "title": "Amethyst Geode Ring",
+  "slug": "amethyst-geode-ring",
+  "subtitle": "Intenebris",
+  "date": "2023-06-17",
+  "draft": false,
+  "featured": false,
+  "categories": [
+    "fashion-jewelry"
+  ],
+  "tags": [
+    "fashion",
+    "intenebris",
+    "modern"
+  ],
+  "description": "This was my first ring I ever designed for my brand back in 2012. I got it to work on the first iteration, and refined it to what it is today by the second version. It's set with a cross section of Uruguayan Amethyst. Carefully hand cut. I had the vision for this, and knew right away that Amethyst in Uruguay would be perfect, because of it's small crystal size and deep color relative to other amethyst. I wore one myself for many years.",
+  "software": [
+    "Rhinoceros 3D",
+    "Matrix"
+  ],
+  "client": "Intenebris",
+  "cover": "media/amethyst-geode-ring/x-axis-geoder-ring-thumb.jpg",
+  "layout": {
+    "type": "masonry",
+    "columns": 3
+  },
+  "media": [
+    {
+      "type": "image",
+      "file": "media/amethyst-geode-ring/ametyst-1.jpg",
+      "alt": "Amethyst Geode Ring – view 1",
+      "size": "large"
+    },
+    {
+      "type": "image",
+      "file": "media/amethyst-geode-ring/amethyst-matrix-ring-x-axis-14.jpg",
+      "alt": "Amethyst Geode Ring – view 2",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/amethyst-geode-ring/amethyst-matrix-ring-x-axis-18.jpg",
+      "alt": "Amethyst Geode Ring – view 3",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/amethyst-geode-ring/amethyst-matrix-ring-x-axis-2-e1520821344894.jpg",
+      "alt": "Amethyst Geode Ring – view 4",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/amethyst-geode-ring/amethyst-matrix-ring-x-axis-1-e1520821262430.jpg",
+      "alt": "Amethyst Geode Ring – view 5",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/amethyst-geode-ring/img_1618.jpg",
+      "alt": "Amethyst Geode Ring – view 6",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/amethyst-geode-ring/img_1616.jpg",
+      "alt": "Amethyst Geode Ring – view 7",
+      "size": "normal"
+    }
+  ]
+}

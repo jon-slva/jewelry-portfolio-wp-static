@@ -5,6 +5,7 @@ styles. A new section is added as each part of the site is built, with pointers 
 shows up in the code.
 
 - [Check-in 1: project setup and site shell](#check-in-1-project-setup-and-site-shell)
+- [Check-in 2: content files, import and validation](#check-in-2-content-files-import-and-validation)
 
 ---
 
@@ -176,3 +177,98 @@ prefix, React Router writes pages into `build/client/<prefix>/`, which the deplo
   the page doesn't jump around ("layout shift").
 - **`rel="noopener noreferrer"`** on links that open a new tab: the new tab can't control this page,
   and doesn't receive it as the referrer.
+
+---
+
+## Check-in 2: content files, import and validation
+
+### Types vs. runtime validation (zod)
+
+TypeScript types only exist while you're editing and type-checking. They're erased before the code
+runs, so they can't check data that arrives from outside the code: a JSON file someone edited by
+hand, or (later) a form in the admin. If `items/ring.json` says `"date": "21/07/2023"`, TypeScript
+never sees it.
+
+[zod](https://zod.dev) checks data **while the code runs**. `src/content/schema.ts` describes every
+content file once as a zod schema, and the TypeScript types are generated from those schemas:
+
+```ts
+export const itemSchema = z.strictObject({ title: z.string().min(1), date: z.iso.date(), ... });
+export type Item = z.infer<typeof itemSchema>; // { title: string; date: string; ... }
+```
+
+So the rules (`npm run validate`) and the types (the editor, `npm run typecheck`) come from the same
+place and can't disagree. `strictObject` also rejects keys the schema doesn't know, which catches
+typos like `"catgories"`.
+
+### Discriminated unions
+
+An item's `media` list mixes images and YouTube videos, and each entry says which it is with a
+`type` field. A union keyed on a shared literal field like this is a **discriminated union**:
+
+```ts
+if (media.type === 'image') {
+  media.file; // TypeScript knows this is an image here
+} else {
+  media.id; // ...and a YouTube video here
+}
+```
+
+Checking `type` narrows the type automatically, without casts. `layout` works the same way: only
+`masonry` and `gallery` have `columns`, so `stacked` can't accidentally get one.
+
+### Running TypeScript directly in Node
+
+The import and validation scripts are `.ts` files that Node 24 runs as they are
+(`node scripts/validate/index.ts`), with no build step or extra tool. Node simply **strips the type
+annotations** and runs what's left. That's why:
+
+- `tsconfig.json` has `erasableSyntaxOnly`, which bans the few TypeScript features that can't just be
+  stripped (`enum`, `namespace`, constructor parameter properties). The importer's `MediaFiles`
+  class declares its fields normally for this reason.
+- Imports include the extension (`./wxr.ts`), because Node doesn't guess file extensions.
+
+### Logic separate from files on disk
+
+Each script is split in two:
+
+- **Pure logic** (`map-item.ts`, `map-site.ts`, `validate/rules.ts`) takes plain data and returns
+  plain data. It never reads files.
+- **A thin command** (`import-wp/index.ts`, `validate/index.ts`) reads the files, calls the logic and
+  writes or prints the result.
+
+That split is what makes the tests simple. `rules.test.ts` builds a tiny valid site in memory, breaks
+one thing per test and checks the error, with no real files and no export needed.
+
+### npm `pre` scripts
+
+npm runs a script named `pre<name>` automatically before `<name>`. `package.json` has
+`"prebuild": "npm run validate"`, so `npm run build` always checks the content first and stops if it
+finds a mistake. A broken image path is caught on your machine, not discovered on the live site.
+
+### File names and letter case
+
+macOS ignores letter case in file names (`Hero.JPG` and `hero.jpg` are the same file), but Linux,
+which build servers usually run on, doesn't. A path with the wrong case works locally and breaks
+after deploying. So the importer lowercases every file name, the schema only accepts lowercase media
+paths, and validation compares paths exactly rather than asking the file system.
+
+### What WordPress stored, and how it was read
+
+- **WXR** is WordPress's export format: one big XML file with every post, page, image and setting.
+  `scripts/import-wp/wxr.ts` turns it into plain objects with
+  [fast-xml-parser](https://github.com/NaturalIntelligence/fast-xml-parser).
+- **Post meta** holds the theme's settings (layout, columns, gallery image IDs). Some values are
+  stored in PHP's own `serialize()` format, like the YouTube videos. `php-unserialize.ts` is a small
+  reader for it.
+- **Shortcodes** like `[vc_row]` are page-builder markup that only WordPress understands.
+  `content-text.ts` removes them and splits the text into title, subtitle, description, software and
+  client.
+- The **static HTML export** shows what the site actually rendered. The importer uses it for the
+  front-page order, and to double-check layouts and image sizes against the XML.
+
+### A guarded one-off script
+
+The importer refuses to run when `src/content/items/` already has items, unless you pass `--force`.
+Once content is edited by hand or in the admin, re-importing would silently throw those edits away,
+so the script makes that a deliberate choice.

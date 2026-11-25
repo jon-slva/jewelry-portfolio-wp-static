@@ -1,0 +1,78 @@
+{
+  "title": "The Princes & The Frog Ring",
+  "slug": "the-princes-the-frog-ring",
+  "subtitle": "Rocklove X Disney",
+  "date": "2023-06-13",
+  "draft": false,
+  "featured": false,
+  "categories": [
+    "ent-jewelry",
+    "sculpture"
+  ],
+  "tags": [
+    "disney",
+    "rocklove-jewelry"
+  ],
+  "description": "This is part of a collection of officially licensed Disney merch designed by Rocklove Jewelry. We did several pieces in conjunction with the live action movie release, but this one is my favorite.",
+  "software": [
+    "Zbrush",
+    "Rhinoceros 3D",
+    "Matrix"
+  ],
+  "client": "Disney, Rocklove",
+  "cover": "media/the-princes-the-frog-ring/frog-ring-color-tilted-left.jpg",
+  "layout": {
+    "type": "masonry",
+    "columns": 3
+  },
+  "media": [
+    {
+      "type": "image",
+      "file": "media/the-princes-the-frog-ring/frog-ring-color-tilted-left.jpg",
+      "alt": "The Princes & The Frog Ring – view 1",
+      "size": "large"
+    },
+    {
+      "type": "image",
+      "file": "media/the-princes-the-frog-ring/frog-ring-color-tilted-right.jpg",
+      "alt": "The Princes & The Frog Ring – view 2",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/the-princes-the-frog-ring/frog-ring-color-top.jpg",
+      "alt": "The Princes & The Frog Ring – view 3",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/the-princes-the-frog-ring/merge_view_1406x1920-3.png",
+      "alt": "The Princes & The Frog Ring – view 4",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/the-princes-the-frog-ring/frog-ring-clay-top.jpg",
+      "alt": "The Princes & The Frog Ring – view 5",
+      "size": "large"
+    },
+    {
+      "type": "image",
+      "file": "media/the-princes-the-frog-ring/frog-ring-clay-tilted-left.jpg",
+      "alt": "The Princes & The Frog Ring – view 6",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/the-princes-the-frog-ring/screen-shot-2020-06-01-at-11.50.46-am.png",
+      "alt": "The Princes & The Frog Ring – view 7",
+      "size": "large"
+    },
+    {
+      "type": "image",
+      "file": "media/the-princes-the-frog-ring/frog-ring-clay-tilted-right.jpg",
+      "alt": "The Princes & The Frog Ring – view 8",
+      "size": "normal"
+    }
+  ]
+}

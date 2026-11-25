@@ -1,0 +1,62 @@
+{
+  "title": "Pear Ring w/ Oval Halo",
+  "slug": "pear-ring-w-oval-halo",
+  "subtitle": "",
+  "date": "2022-06-19",
+  "draft": false,
+  "featured": false,
+  "categories": [
+    "fine"
+  ],
+  "tags": [],
+  "description": "",
+  "software": [
+    "Rhinoceros 3D",
+    "Matrix",
+    "Keyshot"
+  ],
+  "client": "Private client",
+  "cover": "media/pear-ring-w-oval-halo/fancy-pear-thumb-2.jpg",
+  "layout": {
+    "type": "masonry",
+    "columns": 3
+  },
+  "media": [
+    {
+      "type": "image",
+      "file": "media/pear-ring-w-oval-halo/fancy-pear-persp.png",
+      "alt": "Pear Ring w/ Oval Halo – view 1",
+      "size": "large"
+    },
+    {
+      "type": "image",
+      "file": "media/pear-ring-w-oval-halo/fancy-pear-thumb.png",
+      "alt": "Pear Ring w/ Oval Halo – view 2",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/pear-ring-w-oval-halo/fancy-pear-top.png",
+      "alt": "Pear Ring w/ Oval Halo – view 3",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/pear-ring-w-oval-halo/fancy-pear-right.png",
+      "alt": "Pear Ring w/ Oval Halo – view 4",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/pear-ring-w-oval-halo/fancy-pear-showcase.png",
+      "alt": "Pear Ring w/ Oval Halo – view 5",
+      "size": "large"
+    },
+    {
+      "type": "image",
+      "file": "media/pear-ring-w-oval-halo/fancy-pear-front.png",
+      "alt": "Pear Ring w/ Oval Halo – view 6",
+      "size": "normal"
+    }
+  ]
+}

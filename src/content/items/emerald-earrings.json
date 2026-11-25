@@ -1,0 +1,55 @@
+{
+  "title": "Emerald Earrings",
+  "slug": "emerald-earrings",
+  "subtitle": "",
+  "date": "2023-07-24",
+  "draft": false,
+  "featured": false,
+  "categories": [
+    "fine"
+  ],
+  "tags": [],
+  "description": "",
+  "software": [
+    "Rhinoceros 3D",
+    "Matrix"
+  ],
+  "client": "Private client",
+  "cover": "media/emerald-earrings/emerald-earrings-thumb-small.jpg",
+  "layout": {
+    "type": "masonry",
+    "columns": 3
+  },
+  "media": [
+    {
+      "type": "image",
+      "file": "media/emerald-earrings/emerald-earrings-3.png",
+      "alt": "Emerald Earrings – view 1",
+      "size": "large"
+    },
+    {
+      "type": "image",
+      "file": "media/emerald-earrings/emerald-earrings-1.png",
+      "alt": "Emerald Earrings – view 2",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/emerald-earrings/emerald-earrings-2.png",
+      "alt": "Emerald Earrings – view 3",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/emerald-earrings/emerald-earrings-4.png",
+      "alt": "Emerald Earrings – view 4",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/emerald-earrings/emerald-earrings-thumb.jpg",
+      "alt": "Emerald Earrings – view 5",
+      "size": "large"
+    }
+  ]
+}

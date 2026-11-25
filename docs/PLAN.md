@@ -27,6 +27,7 @@ src/content/
   grid.json                 # front-page grid: order of items + grid settings (columns, gap)
   categories.json           # [{ slug, name }] in filter-bar order
   tags.json                 # [{ slug, name }]
+  redirects.json            # [{ from, to }] old item slugs that forward to the current one
   items/<slug>.json         # one file per portfolio item
   media/<slug>/...          # original images for that item
   media/site/...            # logo, resume PDF, other shared files
@@ -57,7 +58,8 @@ Item file example:
 ```
 
 **Videos.**
-- Four items have YouTube videos in their galleries: crocodile-necklace, cosmea-diamond-ring, floating-octahedron-ring, and vincent-castiglia-the-sleep-necklace (that one has two).
+- Four items have YouTube videos in their galleries: crocodile-necklace, cosmea-diamond-ring, floating-octahedron-ring (that one has two), and vincent-castiglia-the-sleep-necklace.
+- The old site shows them after the images, so they're imported at the end of `media`.
 - They come from the theme's `edge_portfolio_images` meta and become `youtube` entries in `media`.
 - On the site they show as a lightweight click-to-play thumbnail. The YouTube player only loads when clicked, which keeps pages fast.
 
@@ -71,7 +73,7 @@ Item file example:
 
 **Front-page grid arrangement.**
 - Item order lives in one file, `grid.json`, rather than an `order` number on each item. Reordering then rewrites one file, the order is easy to read and hand-edit, and new items get appended automatically.
-- Grid settings (columns per breakpoint, gap) live in the same file.
+- Grid settings (columns per breakpoint, gap) live in the same file. Imported from the theme: 5 / 3 / 2 / 1 tiles per row (over 1200px / 1025–1200 / 681–1024 / up to 680), 10px gap.
 - `featured` items render as a double-size tile.
 - All imported items start with `featured: false`, so the grid matches today's site.
 
@@ -122,10 +124,10 @@ Not covered by unit tests: visual components, snapshots, and end-to-end browser 
 
 ## Phase 0 — Plan & reference (`feature/project-plan`)
 
-- [ ] Create `develop` from `main` and push it
-- [ ] `.gitignore`: `_source/`, `node_modules/`, `dist/`, image cache, local editor/tool files
-- [ ] This plan (`docs/PLAN.md`)
-- [ ] Full-page reference screenshots of jewelrybyjs.com into `docs/reference/` (see its README):
+- [x] Create `develop` from `main` and push it
+- [x] `.gitignore`: `_source/`, `node_modules/`, `dist/`, image cache, local editor/tool files
+- [x] This plan (`docs/PLAN.md`)
+- [x] Full-page reference screenshots of jewelrybyjs.com into `docs/reference/` (see its README):
   - Pages: home (all + one filtered view + tile hover), resume, contact, 404
   - Items, one per layout:
     - `reza-ruban-ring` (masonry)
@@ -133,38 +135,41 @@ Not covered by unit tests: visual components, snapshots, and end-to-end browser 
     - `crocodile-necklace` (gallery + video)
     - `reza-spirale-ring` (GIFs)
   - Each at desktop and mobile width
-- [ ] ✅ Check-in → commit → push for review
+- [x] ✅ Check-in → commit → push for review
 
 ## Phase 1 — Core site (`feature/core-site`)
 
 ### 1a. Scaffold
-- [ ] Vite + React 19 + TypeScript + React Router 7 (pre-rendered static routes)
-- [ ] Sass modules, ESLint + Prettier, Vitest, `.nvmrc`
-- [ ] Configurable base path (`BASE_PATH`)
-- [ ] Move the Simply Static export into `legacy/wp-export/`. It stays there as an importer source and is deleted at launch.
-- [ ] ✅ Check-in 1: app runs locally (`npm run dev`)
+- [x] Vite + React 19 + TypeScript + React Router 8 (pre-rendered static routes)
+- [x] Sass modules, ESLint + Prettier, Vitest, `.nvmrc`
+- [x] Configurable base path (`BASE_PATH`)
+- [x] Move the Simply Static export into `legacy/wp-export/`. It stays there as an importer source and is deleted at launch.
+- [x] ✅ Check-in 1: app runs locally (`npm run dev`)
 
 ### 1b. Content model, importer, validation
-- [ ] Types + zod schema for site, grid, categories, tags, items
-- [ ] `scripts/import-wp/`:
-  - [ ] Read the WXR XML first. Published `portfolio-item`s only.
-  - [ ] Fall back to the Simply Static HTML for anything missing, and for the exact front-page order (WordPress `menu_order` has ties)
-  - [ ] Strip Visual Composer shortcodes. Split out title / subtitle / description / Software / Client.
-  - [ ] Map layouts: template, columns, and per-image large/normal size
-  - [ ] Map YouTube videos from `edge_portfolio_images` into `media`, in their original positions
-  - [ ] Copy originals only (`-scaled` where WordPress downscaled them). Skip generated size variants (`-300x225`, etc.).
-  - [ ] Generate starter alt text ("<Title> – view N"), editable later
-  - [ ] Write `docs/migration-report.md`:
+- [x] Types + zod schema for site, grid, categories, tags, items
+- [x] `scripts/import-wp/`:
+  - [x] Read the WXR XML first. Published `portfolio-item`s only.
+  - [x] Fall back to the Simply Static HTML for anything missing, and for the exact front-page order (WordPress `menu_order` has ties)
+  - [x] Strip Visual Composer shortcodes. Split out title / subtitle / description / Software / Client.
+  - [x] Map layouts: template, columns, and per-image large/normal size
+  - [x] Map YouTube videos from `edge_portfolio_images` into `media`, in their original positions
+  - [x] Copy originals only (`-scaled` where WordPress downscaled them). Skip generated size variants (`-300x225`, etc.).
+  - [x] Generate starter alt text ("<Title> – view N"), editable later
+  - [x] Collect old slugs (`_wp_old_slug`) into `redirects.json`, skipping post-copy leftovers
+  - [x] Write `docs/migration-report.md`:
     - unmapped fields
     - missing files (26 old attachments of real items, 438 orphaned demo files)
     - shortcode before/after samples
-- [ ] `npm run validate` fails the build on:
+- [x] `npm run validate` fails the build on:
   - broken image refs
   - unknown categories or tags
   - duplicate slugs
   - items missing from `grid.json`, or entries in it with no item
-- [ ] Vitest tests for the importer, validation and grid/filter logic (see Testing approach)
-- [ ] ✅ Check-in 2: review the generated content files + migration report
+  - redirects that clash with an item or point nowhere
+  - (runs automatically before `npm run build`)
+- [x] Vitest tests for the importer, validation and grid/filter logic (see Testing approach)
+- [x] ✅ Check-in 2: review the generated content files + migration report
 
 ### 1c. Image pipeline
 - [ ] sharp build step: WebP + JPEG at ~400 / 800 / 1200 / 1920 px, cached and git-ignored

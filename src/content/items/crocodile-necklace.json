@@ -1,0 +1,64 @@
+{
+  "title": "Crocodile Necklace",
+  "slug": "crocodile-necklace",
+  "subtitle": "",
+  "date": "2023-07-24",
+  "draft": false,
+  "featured": false,
+  "categories": [
+    "fine",
+    "sculpture"
+  ],
+  "tags": [],
+  "description": "",
+  "software": [
+    "Rhinoceros 3D",
+    "Matrix",
+    "Zbrush",
+    "Vray"
+  ],
+  "client": "Private client",
+  "cover": "media/crocodile-necklace/cartier-crocodiles-thumb-small.jpg",
+  "layout": {
+    "type": "gallery",
+    "columns": 3
+  },
+  "media": [
+    {
+      "type": "image",
+      "file": "media/crocodile-necklace/cartier-crocodiles-3.png",
+      "alt": "Crocodile Necklace – view 1",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/crocodile-necklace/cartier-crocodiles-1.png",
+      "alt": "Crocodile Necklace – view 2",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/crocodile-necklace/cartier-crocodiles-2.png",
+      "alt": "Crocodile Necklace – view 3",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/crocodile-necklace/cartier-crocodiles-5.png",
+      "alt": "Crocodile Necklace – view 4",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/crocodile-necklace/cartier-crocodiles-thumb-large.png",
+      "alt": "Crocodile Necklace – view 5",
+      "size": "normal"
+    },
+    {
+      "type": "youtube",
+      "id": "NJQgPu4aDQ4",
+      "title": "Crocodile Necklace – video",
+      "size": "normal"
+    }
+  ]
+}

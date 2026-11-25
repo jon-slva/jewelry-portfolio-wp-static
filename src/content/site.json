@@ -4,7 +4,17 @@
   "logo": "media/site/logo.png",
   "copyright": "All designs are property of Jonathan Silva unless otherwise stated",
   "social": [
-    { "label": "LinkedIn", "url": "https://www.linkedin.com/in/jonathansilva761/" },
-    { "label": "Behance", "url": "https://www.behance.net/jonathansilva" }
-  ]
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/jonathansilva761/"
+    },
+    {
+      "label": "Behance",
+      "url": "https://www.behance.net/jonathansilva"
+    }
+  ],
+  "resume": {
+    "pdf": "media/site/jonathan-silva-resume-rl-2023.pdf",
+    "preview": "media/site/jonathan-silva-resume-2018-pdf-232x300.jpg"
+  }
 }

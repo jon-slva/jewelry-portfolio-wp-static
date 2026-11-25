@@ -1,0 +1,56 @@
+{
+  "title": "Reza Yosun Tilted A Ring",
+  "slug": "reza-yosun-tilted-a-ring",
+  "subtitle": "",
+  "date": "2023-07-21",
+  "draft": false,
+  "featured": false,
+  "categories": [
+    "fine"
+  ],
+  "tags": [],
+  "description": "",
+  "software": [
+    "Rhinoceros 3D",
+    "Matrix",
+    "Vray"
+  ],
+  "client": "Reza International Inc.",
+  "cover": "media/reza-yosun-tilted-a-ring/thumb-1-1.jpg",
+  "layout": {
+    "type": "masonry",
+    "columns": 3
+  },
+  "media": [
+    {
+      "type": "image",
+      "file": "media/reza-yosun-tilted-a-ring/thumb-2.jpg",
+      "alt": "Reza Yosun Tilted A Ring – view 1",
+      "size": "large"
+    },
+    {
+      "type": "image",
+      "file": "media/reza-yosun-tilted-a-ring/a-o-clock-ring-persp-2-5th-ave.png",
+      "alt": "Reza Yosun Tilted A Ring – view 2",
+      "size": "large"
+    },
+    {
+      "type": "image",
+      "file": "media/reza-yosun-tilted-a-ring/a-o-clock-ring-front.png",
+      "alt": "Reza Yosun Tilted A Ring – view 3",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/reza-yosun-tilted-a-ring/a-o-clock-ring-left.png",
+      "alt": "Reza Yosun Tilted A Ring – view 4",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/reza-yosun-tilted-a-ring/a-o-clock-ring-top.png",
+      "alt": "Reza Yosun Tilted A Ring – view 5",
+      "size": "normal"
+    }
+  ]
+}

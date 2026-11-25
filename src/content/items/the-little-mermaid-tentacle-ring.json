@@ -1,0 +1,49 @@
+{
+  "title": "The Little Mermaid Tentacle Ring",
+  "slug": "the-little-mermaid-tentacle-ring",
+  "subtitle": "Rocklove X Disney",
+  "date": "2023-06-19",
+  "draft": false,
+  "featured": false,
+  "categories": [
+    "ent-jewelry",
+    "sculpture"
+  ],
+  "tags": [
+    "disney",
+    "rocklove-jewelry"
+  ],
+  "description": "This is part of a collection of officially licensed Disney merch designed by Rocklove Jewelry.",
+  "software": [
+    "Zbrush",
+    "Rhinoceros 3D",
+    "Matrix",
+    "Grasshopper"
+  ],
+  "client": "Disney, Rocklove",
+  "cover": "media/the-little-mermaid-tentacle-ring/bpr_render-color.jpg",
+  "layout": {
+    "type": "masonry",
+    "columns": 2
+  },
+  "media": [
+    {
+      "type": "image",
+      "file": "media/the-little-mermaid-tentacle-ring/bpr_render-color.jpg",
+      "alt": "The Little Mermaid Tentacle Ring – view 1",
+      "size": "large"
+    },
+    {
+      "type": "image",
+      "file": "media/the-little-mermaid-tentacle-ring/little-mermaid-tentacle-ring.jpg",
+      "alt": "The Little Mermaid Tentacle Ring – view 2",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/the-little-mermaid-tentacle-ring/la-d60244.jpg",
+      "alt": "The Little Mermaid Tentacle Ring – view 3",
+      "size": "normal"
+    }
+  ]
+}

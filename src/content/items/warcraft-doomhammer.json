@@ -1,0 +1,85 @@
+{
+  "title": "Warcraft Doomhammer Necklace",
+  "slug": "warcraft-doomhammer",
+  "subtitle": "Rocklove X Legendary Pictures",
+  "date": "2023-06-19",
+  "draft": false,
+  "featured": false,
+  "categories": [
+    "ent-jewelry",
+    "sculpture"
+  ],
+  "tags": [
+    "legendary-pictures",
+    "rocklove-jewelry"
+  ],
+  "description": "One of several pieces I made for Rocklove Jewelry and Legendary Pictures to coincide with the release of the Warcraft Movie in 2016.",
+  "software": [
+    "Zbrush",
+    "Rhinoceros 3D",
+    "Matrix",
+    "Photoshop"
+  ],
+  "client": "Legendary Pictures, Weta, Rocklove",
+  "cover": "media/warcraft-doomhammer/doomhammer-thumb-color-small.jpg",
+  "layout": {
+    "type": "masonry",
+    "columns": 3
+  },
+  "media": [
+    {
+      "type": "image",
+      "file": "media/warcraft-doomhammer/doomhammer-thumb-color.jpg",
+      "alt": "Warcraft Doomhammer Necklace – view 1",
+      "size": "large"
+    },
+    {
+      "type": "image",
+      "file": "media/warcraft-doomhammer/doomhammer-5-perspective.jpg",
+      "alt": "Warcraft Doomhammer Necklace – view 2",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/warcraft-doomhammer/doomhammer-4-perspective.jpg",
+      "alt": "Warcraft Doomhammer Necklace – view 3",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/warcraft-doomhammer/merge_view_1406x1920-4.png",
+      "alt": "Warcraft Doomhammer Necklace – view 4",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/warcraft-doomhammer/doomhammer-3-perspective.jpg",
+      "alt": "Warcraft Doomhammer Necklace – view 5",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/warcraft-doomhammer/doomhammer-2-perspective.jpg",
+      "alt": "Warcraft Doomhammer Necklace – view 6",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/warcraft-doomhammer/doomhammer-1-perspective.jpg",
+      "alt": "Warcraft Doomhammer Necklace – view 7",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/warcraft-doomhammer/wcdoomhammerpendant01.jpg",
+      "alt": "Warcraft Doomhammer Necklace – view 8",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/warcraft-doomhammer/tumblr_nxeevglxm51tp4ijto2_1280.jpg",
+      "alt": "Warcraft Doomhammer Necklace – view 9",
+      "size": "normal"
+    }
+  ]
+}

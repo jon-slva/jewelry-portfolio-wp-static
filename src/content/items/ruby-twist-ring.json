@@ -1,0 +1,62 @@
+{
+  "title": "Ruby Twist Ring",
+  "slug": "ruby-twist-ring",
+  "subtitle": "",
+  "date": "2023-07-24",
+  "draft": false,
+  "featured": false,
+  "categories": [
+    "fine"
+  ],
+  "tags": [],
+  "description": "",
+  "software": [
+    "Rhinoceros 3D",
+    "Matrix",
+    "Vray"
+  ],
+  "client": "Private client",
+  "cover": "media/ruby-twist-ring/ruby-twist-ring-thumb-small.jpg",
+  "layout": {
+    "type": "masonry",
+    "columns": 3
+  },
+  "media": [
+    {
+      "type": "image",
+      "file": "media/ruby-twist-ring/ruby-twist-ring-persp.png",
+      "alt": "Ruby Twist Ring – view 1",
+      "size": "large"
+    },
+    {
+      "type": "image",
+      "file": "media/ruby-twist-ring/ruby-twist-ring-thumb.png",
+      "alt": "Ruby Twist Ring – view 2",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/ruby-twist-ring/ruby-twist-ring-side.png",
+      "alt": "Ruby Twist Ring – view 3",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/ruby-twist-ring/ruby-twist-ring-front.png",
+      "alt": "Ruby Twist Ring – view 4",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/ruby-twist-ring/ruby-twist-ring-showcase.png",
+      "alt": "Ruby Twist Ring – view 5",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/ruby-twist-ring/ruby-twist-ring-top.png",
+      "alt": "Ruby Twist Ring – view 6",
+      "size": "normal"
+    }
+  ]
+}
