@@ -1,64 +1,51 @@
 @use '../../styles/variables' as *;
 
-// Temporary single-column item page, enough to check images and text.
-// TODO(phase 1d): the real layouts from docs/reference/.
+// The text comes first in the HTML, so phones (and screen readers) get the
+// title and description before the images. Wider screens move it:
+// - masonry / stacked ("beside"): text in a column to the right of the
+//   images, staying in view while the images scroll (sticky)
+// - gallery ("below"): images across the full width, text underneath
+//   (as on the original site)
 
-.item {
-  max-width: 900px;
-}
-
-.text {
-  max-width: 640px;
-  margin-bottom: 40px;
-}
-
-.title {
-  font-size: 30px;
-  margin-bottom: 4px;
-}
-
-.subtitle {
-  margin-top: 0;
-  color: $color-text-muted;
-  font-weight: $font-weight-regular;
-}
-
-.details {
+.beside,
+.below {
   display: grid;
-  grid-template-columns: max-content 1fr;
-  gap: 4px 16px;
-  margin-top: 24px;
-
-  dt {
-    font-weight: $font-weight-bold;
-  }
-
-  dd {
-    margin: 0;
-  }
-}
-
-.termLink {
-  text-decoration: underline;
-  text-decoration-color: $color-text-muted;
-  text-underline-offset: 3px;
-
-  &:hover {
-    color: $color-text-muted;
-  }
+  gap: 30px;
+  max-width: 1500px;
 }
 
 .media {
-  display: grid;
-  gap: 10px;
+  min-width: 0;
 }
 
-.youtube {
-  padding: 40px 24px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  text-align: center;
+@media (min-width: 1200px) {
+  .beside {
+    grid-template-columns: minmax(0, 1fr) 300px;
+    grid-template-areas: 'media details';
 
-  &:hover {
-    color: $color-text-muted;
+    .details {
+      grid-area: details;
+      position: sticky;
+      top: $page-padding;
+      align-self: start;
+    }
+
+    .media {
+      grid-area: media;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .below {
+    grid-template-areas: 'media' 'details';
+
+    .details {
+      grid-area: details;
+    }
+
+    .media {
+      grid-area: media;
+    }
   }
 }

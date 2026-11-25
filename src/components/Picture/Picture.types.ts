@@ -1,7 +1,7 @@
 import type { ImageInfo } from '../../content/media.ts';
 
 export interface PictureProps {
-  /** From getImage() / getImages() in src/content. Renders nothing when missing. */
+  /** From getImage() in src/content. Renders nothing when missing. */
   image: ImageInfo | undefined;
   alt: string;
   /**

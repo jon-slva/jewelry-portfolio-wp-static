@@ -1,30 +1,40 @@
-import { data, Link } from 'react-router';
-import LoopVideo from '../../components/LoopVideo/LoopVideo';
-import Picture from '../../components/Picture/Picture';
-import { categories, getImages, getItem, getVideos, tags } from '../../content';
+import { useState } from 'react';
+import { data } from 'react-router';
+import Lightbox from '../../components/Lightbox/Lightbox';
+import { categories, getImage, getItem, getVideo, tags } from '../../content';
 import site from '../../content/site.json';
-import styles from './ItemPage.module.scss';
 import type { Route } from './+types/ItemPage';
+import ItemDetails from './ItemDetails';
+import ItemMedia from './ItemMedia';
+import type { ItemMedia as Media } from './item.types.ts';
+import styles from './ItemPage.module.scss';
 
 // Runs at build time for each pre-rendered item page (and on request in dev).
 export function loader({ params }: Route.LoaderArgs) {
   const item = getItem(params.slug);
   if (!item) throw data(null, { status: 404 });
 
-  const imagePaths = item.media.flatMap((media) =>
-    media.type === 'image' ? [media.file] : media.type === 'video' ? [media.poster] : [],
-  );
-  const videoPaths = item.media.flatMap((media) => (media.type === 'video' ? [media.file] : []));
-  // The item's categories and tags with their display names, for linking.
-  const pick = (terms: typeof categories, slugs: string[]) =>
-    terms.filter((term) => slugs.includes(term.slug));
+  // Look up the web files for each entry. Entries whose files are missing are
+  // dropped (npm run validate reports them).
+  const media = item.media.flatMap((entry, i): Media[] => {
+    const key = `${i}-${entry.type}`;
+    if (entry.type === 'image') {
+      const image = getImage(entry.file);
+      return image ? [{ type: 'image', key, alt: entry.alt, size: entry.size, image }] : [];
+    }
+    if (entry.type === 'video') {
+      const video = getVideo(entry.file);
+      const poster = getImage(entry.poster);
+      return video ? [{ type: 'video', key, alt: entry.alt, size: entry.size, video, poster }] : [];
+    }
+    return [{ type: 'youtube', key, title: entry.title, size: entry.size, id: entry.id }];
+  });
 
   return {
     item,
-    images: getImages(imagePaths),
-    videos: getVideos(videoPaths),
-    itemCategories: pick(categories, item.categories),
-    itemTags: pick(tags, item.tags),
+    media,
+    itemCategories: categories.filter((term) => item.categories.includes(term.slug)),
+    itemTags: tags.filter((term) => item.tags.includes(term.slug)),
   };
 }
 
@@ -35,96 +45,29 @@ export function meta({ loaderData }: Route.MetaArgs) {
 }
 
 export default function ItemPage({ loaderData }: Route.ComponentProps) {
-  const { item, images, videos, itemCategories, itemTags } = loaderData;
+  const { item, media, itemCategories, itemTags } = loaderData;
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const images = media.flatMap((entry) =>
+    entry.type === 'image' ? [{ image: entry.image, alt: entry.alt }] : [],
+  );
 
   return (
-    <article className={styles.item}>
-      <header className={styles.text}>
-        <h1 className={styles.title}>{item.title}</h1>
-        {item.subtitle && <p className={styles.subtitle}>{item.subtitle}</p>}
-        {item.description.split('\n\n').map((paragraph) => (
-          <p key={paragraph}>{paragraph}</p>
-        ))}
-        <dl className={styles.details}>
-          {item.software.length > 0 && (
-            <>
-              <dt>Software</dt>
-              <dd>{item.software.join(', ')}</dd>
-            </>
-          )}
-          {item.client && (
-            <>
-              <dt>Client</dt>
-              <dd>{item.client}</dd>
-            </>
-          )}
-          <dt>Category</dt>
-          <dd>
-            <TermLinks terms={itemCategories} base="/portfolio-category/" />
-          </dd>
-          {itemTags.length > 0 && (
-            <>
-              <dt>Tags</dt>
-              <dd>
-                <TermLinks terms={itemTags} base="/portfolio-tag/" />
-              </dd>
-            </>
-          )}
-        </dl>
-      </header>
-
-      {/* TODO(phase 1d): masonry / stacked / gallery layouts, lightbox, click-to-play videos.
-          For now every image and video is listed in a single column. */}
-      <div className={styles.media}>
-        {item.media.map((media, i) => {
-          switch (media.type) {
-            case 'image':
-              return (
-                <Picture
-                  key={media.file}
-                  image={images[media.file]}
-                  alt={media.alt}
-                  sizes="(min-width: 1024px) min(900px, calc(100vw - 423px)), calc(100vw - 32px)"
-                  priority={i === 0}
-                />
-              );
-            case 'video':
-              return (
-                <LoopVideo
-                  key={media.file}
-                  video={videos[media.file]}
-                  poster={images[media.poster]}
-                  alt={media.alt}
-                  displayWidth={900}
-                />
-              );
-            case 'youtube':
-              return (
-                <a
-                  key={media.id}
-                  className={styles.youtube}
-                  href={`https://www.youtube.com/watch?v=${media.id}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  ▶ {media.title} (YouTube)
-                </a>
-              );
-          }
-        })}
+    <article className={item.layout.type === 'gallery' ? styles.below : styles.beside}>
+      <div className={styles.details}>
+        <ItemDetails
+          title={item.title}
+          subtitle={item.subtitle}
+          description={item.description}
+          software={item.software}
+          client={item.client}
+          categories={itemCategories}
+          tags={itemTags}
+        />
       </div>
+      <div className={styles.media}>
+        <ItemMedia media={media} layout={item.layout} onOpenImage={setLightboxIndex} />
+      </div>
+      <Lightbox images={images} index={lightboxIndex} onIndexChange={setLightboxIndex} />
     </article>
   );
-}
-
-/** Comma-separated links to category or tag pages. */
-function TermLinks({ terms, base }: { terms: { slug: string; name: string }[]; base: string }) {
-  return terms.map((term, i) => (
-    <span key={term.slug}>
-      {i > 0 && ', '}
-      <Link to={`${base}${term.slug}/`} className={styles.termLink}>
-        {term.name}
-      </Link>
-    </span>
-  ));
 }

@@ -40,23 +40,3 @@ export function getImage(path: string): ImageInfo | undefined {
 export function getVideo(path: string): VideoInfo | undefined {
   return manifest.videos[path];
 }
-
-/** Image data for several paths, keyed by path, for passing from a loader to a page. */
-export function getImages(paths: string[]): Record<string, ImageInfo> {
-  return Object.fromEntries(
-    paths.flatMap((path) => {
-      const image = getImage(path);
-      return image ? [[path, image]] : [];
-    }),
-  );
-}
-
-/** Video data for several paths, keyed by path, for passing from a loader to a page. */
-export function getVideos(paths: string[]): Record<string, VideoInfo> {
-  return Object.fromEntries(
-    paths.flatMap((path) => {
-      const video = getVideo(path);
-      return video ? [[path, video]] : [];
-    }),
-  );
-}

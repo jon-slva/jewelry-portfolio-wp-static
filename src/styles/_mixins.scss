@@ -1,0 +1,12 @@
+// Reusable style snippets. Use with `@use '../../styles/mixins' as *;` and
+// `@include visually-hidden;`.
+
+// Hidden on screen but still read by screen readers (unlike display: none).
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

@@ -1,0 +1,129 @@
+@use '../../styles/variables' as *;
+
+// Fills the screen; the image is centered and scaled to fit.
+.lightbox {
+  width: 100vw;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 56px 64px;
+  border: 0;
+  background: transparent;
+  color: $color-text;
+
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.92);
+  }
+
+  // Only lay out as a flex box while open: a closed <dialog> must stay hidden.
+  &[open] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 680px) {
+    padding: 56px 8px;
+  }
+}
+
+.figure {
+  margin: 0;
+  max-width: 100%;
+  max-height: 100%;
+  touch-action: pan-y; // let horizontal swipes reach our handler
+}
+
+.picture img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: calc(100dvh - 140px);
+  margin: 0 auto;
+  user-select: none;
+}
+
+.counter {
+  margin-top: 12px;
+  color: $color-text-muted;
+  font-size: $font-size-small;
+  text-align: center;
+}
+
+// Icon buttons, drawn with borders so there are no image files to load.
+.button {
+  position: fixed;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: $color-text;
+  cursor: pointer;
+  opacity: 0.75;
+  transition: opacity $transition-fast;
+
+  &:hover,
+  &:focus-visible {
+    opacity: 1;
+  }
+}
+
+.previous,
+.next {
+  top: 50%;
+  transform: translateY(-50%);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    border: solid currentColor;
+    border-width: 0 2px 2px 0;
+  }
+}
+
+.previous {
+  left: 8px;
+
+  &::before {
+    transform: translate(-30%, -50%) rotate(135deg);
+  }
+}
+
+.next {
+  right: 8px;
+
+  &::before {
+    transform: translate(-70%, -50%) rotate(-45deg);
+  }
+}
+
+// An "×" from two crossed lines.
+.close {
+  top: 8px;
+  right: 8px;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 24px;
+    height: 2px;
+    background: currentColor;
+  }
+
+  &::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  &::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+}

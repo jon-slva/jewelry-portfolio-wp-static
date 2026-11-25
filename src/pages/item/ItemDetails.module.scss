@@ -1,0 +1,57 @@
+@use '../../styles/variables' as *;
+
+.details {
+  display: grid;
+  gap: 28px;
+  align-content: start;
+}
+
+.title {
+  margin: 0;
+  font-size: 34px;
+  line-height: 1.15;
+}
+
+.subtitle {
+  margin: 10px 0 0;
+  font-weight: $font-weight-bold;
+}
+
+.description {
+  margin: 16px 0 0;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.facts {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+
+  &:empty {
+    display: none;
+  }
+}
+
+// "Software: Rhino, Matrix" on one line, wrapping under the value.
+.fact {
+  dt {
+    display: inline;
+    margin-right: 6px;
+    font-weight: $font-weight-regular;
+  }
+
+  dd {
+    display: inline;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.75);
+  }
+}
+
+.termLink {
+  color: $color-text-muted;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-text;
+  }
+}
