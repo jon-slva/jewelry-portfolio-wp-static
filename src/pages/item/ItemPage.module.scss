@@ -1,0 +1,54 @@
+@use '../../styles/variables' as *;
+
+// Temporary single-column item page, enough to check images and text.
+// TODO(phase 1d): the real layouts from docs/reference/.
+
+.item {
+  max-width: 900px;
+}
+
+.text {
+  max-width: 640px;
+  margin-bottom: 40px;
+}
+
+.title {
+  font-size: 30px;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  margin-top: 0;
+  color: $color-text-muted;
+  font-weight: $font-weight-regular;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 4px 16px;
+  margin-top: 24px;
+
+  dt {
+    font-weight: $font-weight-bold;
+  }
+
+  dd {
+    margin: 0;
+  }
+}
+
+.media {
+  display: grid;
+  gap: 10px;
+}
+
+.youtube {
+  padding: 40px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
+
+  &:hover {
+    color: $color-text-muted;
+  }
+}

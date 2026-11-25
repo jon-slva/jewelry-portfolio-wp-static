@@ -23,21 +23,24 @@ npm install     # first time only, or after pulling new dependencies
 npm run dev     # start the local site at http://localhost:5173
 ```
 
-The dev server reloads automatically when you save a file.
+The dev server reloads automatically when you save a file. Before starting, it builds the web
+versions of the images (see [Images](#images)). The very first time that takes about 15 seconds.
 
 ## Scripts
 
-| Command             | What it does                                                       |
-| ------------------- | ------------------------------------------------------------------ |
-| `npm run dev`       | Run the site locally with live reload                              |
-| `npm run build`     | Check the content, then build the static site into `build/client/` |
-| `npm run preview`   | Serve the last build locally, to check it before deploying         |
-| `npm run validate`  | Check the content files for mistakes (see [Content](#content))     |
-| `npm run import:wp` | One-off import from the old WordPress site (see below)             |
-| `npm run typecheck` | Check TypeScript types                                             |
-| `npm run lint`      | Check code for common mistakes (ESLint)                            |
-| `npm run format`    | Auto-format code (Prettier)                                        |
-| `npm test`          | Run the unit tests once (`npm run test:watch` to keep watching)    |
+| Command                | What it does                                                                   |
+| ---------------------- | ------------------------------------------------------------------------------ |
+| `npm run dev`          | Run the site locally with live reload                                          |
+| `npm run build`        | Check the content, then build the static site into `build/client/`             |
+| `npm run preview`      | Serve the last build locally, to check it before deploying                     |
+| `npm run images`       | Build web-sized copies of the content images (runs before dev and build)       |
+| `npm run gif-to-video` | Turn an animated GIF into a much smaller looping video (see [Images](#images)) |
+| `npm run validate`     | Check the content files for mistakes (see [Content](#content))                 |
+| `npm run import:wp`    | One-off import from the old WordPress site (see below)                         |
+| `npm run typecheck`    | Check TypeScript types                                                         |
+| `npm run lint`         | Check code for common mistakes (ESLint)                                        |
+| `npm run format`       | Auto-format code (Prettier)                                                    |
+| `npm test`             | Run the unit tests once (`npm run test:watch` to keep watching)                |
 
 <!-- TODO(phase 1e): deploy instructions. TODO(phase 2): admin instructions. -->
 
@@ -54,6 +57,8 @@ src/
 scripts/
   import-wp/         one-off WordPress import
   validate/          content checks (npm run validate)
+  images/            web image and video build (npm run images)
+  gif-to-video/      GIF → MP4 conversion (npm run gif-to-video)
 config/              build settings shared by Vite and React Router
 docs/                plan, migration report, concepts, reference screenshots of the old site
 legacy/wp-export/    old WordPress static export, used for the content import (removed at launch)
@@ -100,6 +105,47 @@ WordPress export file in `_source/` (kept out of git) and the static export in `
 It writes the content files, copies the images and writes
 [docs/migration-report.md](docs/migration-report.md), which lists everything changed or left
 behind. Running it again would overwrite later edits, so it refuses unless you add `-- --force`.
+
+## Images
+
+Keep only the **original, full-size** images in `src/content/media/`. `npm run images` turns each
+image the content uses into WebP files at several widths plus a JPEG fallback, in `public/img/`.
+Pages then serve the smallest file that looks sharp on each screen, and only load images as they
+scroll into view.
+
+- It runs automatically before `npm run dev` and `npm run build`. Run it yourself after adding or
+  replacing an image while the dev server is running.
+- Unchanged images are skipped, so only new or edited ones take time.
+- `public/img/` and `src/generated/` are generated and git-ignored. Delete them to force a full
+  rebuild.
+
+### Animated GIFs → video
+
+GIFs are huge (the two turnarounds were 13 and 15 MB). A short silent MP4 that loops looks the same
+at a fraction of the size (0.75 and 2.5 MB). To convert one (needs [ffmpeg](https://ffmpeg.org/):
+`brew install ffmpeg`):
+
+```bash
+npm run gif-to-video -- media/<slug>/<name>.gif               # full size, for an item page
+npm run gif-to-video -- media/<slug>/<name>.gif --width 400   # smaller, for a grid tile
+```
+
+It writes `<name>.mp4` and a still `<name>-poster.jpg` next to the GIF and prints the entry to use in
+the item file:
+
+```json
+{
+  "type": "video",
+  "file": "media/<slug>/<name>.mp4",
+  "poster": "media/<slug>/<name>-poster.jpg",
+  "alt": "…",
+  "size": "normal"
+}
+```
+
+For a grid tile, set the item's `"coverVideo"` to the video and `"cover"` to the poster. Then delete
+the GIF. On the site, videos play muted and looping like a GIF, only download when scrolled into
+view, and show the poster with play controls to visitors who have reduced motion turned on.
 
 ## Styling
 

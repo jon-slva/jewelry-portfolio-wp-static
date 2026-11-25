@@ -21,6 +21,13 @@ const ring: Item = {
   layout: { type: 'masonry', columns: 3 },
   media: [
     { type: 'image', file: 'media/ring/front.jpg', alt: 'Ring – view 1', size: 'large' },
+    {
+      type: 'video',
+      file: 'media/ring/turn.mp4',
+      poster: 'media/ring/turn-poster.jpg',
+      alt: 'Ring – turnaround',
+      size: 'normal',
+    },
     { type: 'youtube', id: 'r0O95MqK2jQ', title: 'Ring – video', size: 'normal' },
   ],
 };
@@ -52,6 +59,8 @@ function snapshot(change: (content: ContentSnapshot) => void = () => {}): Conten
       'media/site/resume.jpg',
       'media/ring/cover.jpg',
       'media/ring/front.jpg',
+      'media/ring/turn.mp4',
+      'media/ring/turn-poster.jpg',
     ]),
   };
   change(content);
@@ -83,7 +92,9 @@ describe('validateContent', () => {
   });
 
   it('rejects upper-case media paths', () => {
-    expect(errorsFor((c) => (itemData(c).cover = 'media/ring/Cover.JPG'))).toHaveLength(1);
+    expect(errorsFor((c) => (itemData(c).cover = 'media/ring/Cover.JPG'))).toContain(
+      'items/ring.json → cover: Use a lowercase path like media/<folder>/<file>.jpg',
+    );
   });
 
   it('reports a slug that does not match its file name', () => {
@@ -125,6 +136,24 @@ describe('validateContent', () => {
       'items/ring.json → media.0: file not found: src/content/media/ring/front.jpg',
     ]);
     expect(errorsFor((c) => c.mediaFiles.delete('media/site/logo.png'))).toHaveLength(1);
+  });
+
+  it('checks video files and their posters', () => {
+    expect(errorsFor((c) => c.mediaFiles.delete('media/ring/turn-poster.jpg'))).toEqual([
+      'items/ring.json → media.1.poster: file not found: src/content/media/ring/turn-poster.jpg',
+    ]);
+    expect(
+      errorsFor((c) => {
+        const video = itemData(c).media[1] as { file: string };
+        video.file = 'media/ring/turn.gif';
+      }),
+    ).toEqual([expect.stringContaining('Use an .mp4 video')]);
+  });
+
+  it('checks the optional cover video', () => {
+    expect(errorsFor((c) => (itemData(c).coverVideo = 'media/ring/missing.mp4'))).toEqual([
+      'items/ring.json → coverVideo: file not found: src/content/media/ring/missing.mp4',
+    ]);
   });
 
   it('reports items missing from the grid, and grid entries with no item', () => {

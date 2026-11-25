@@ -101,8 +101,13 @@ export function validateContent(content: ContentSnapshot): ValidationResult {
   }
   for (const { file, item } of items) {
     requireFile(`${file.path} → cover`, item.cover);
+    if (item.coverVideo) requireFile(`${file.path} → coverVideo`, item.coverVideo);
     item.media.forEach((media, i) => {
       if (media.type === 'image') requireFile(`${file.path} → media.${i}`, media.file);
+      if (media.type === 'video') {
+        requireFile(`${file.path} → media.${i}`, media.file);
+        requireFile(`${file.path} → media.${i}.poster`, media.poster);
+      }
     });
   }
 

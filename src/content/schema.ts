@@ -23,6 +23,15 @@ export const mediaPathSchema = z
     'Use a lowercase path like media/<folder>/<file>.jpg',
   );
 
+/** An image the image build can process. */
+export const imagePathSchema = mediaPathSchema.regex(
+  /\.(jpg|jpeg|png|webp|gif)$/,
+  'Use a .jpg, .png, .webp or .gif image',
+);
+
+/** A video file, served as is. Make one from a GIF with `npm run gif-to-video`. */
+export const videoPathSchema = mediaPathSchema.regex(/\.mp4$/, 'Use an .mp4 video');
+
 // ---- Categories and tags ----
 
 export const termSchema = z.strictObject({
@@ -41,7 +50,7 @@ export const mediaSizeSchema = z.enum(['normal', 'large']);
 
 export const imageMediaSchema = z.strictObject({
   type: z.literal('image'),
-  file: mediaPathSchema,
+  file: imagePathSchema,
   alt: z.string(),
   size: mediaSizeSchema,
 });
@@ -54,7 +63,22 @@ export const youtubeMediaSchema = z.strictObject({
   size: mediaSizeSchema,
 });
 
-export const mediaSchema = z.discriminatedUnion('type', [imageMediaSchema, youtubeMediaSchema]);
+/** A short silent clip that loops like a GIF (e.g. a turnaround), hosted with the site. */
+export const videoMediaSchema = z.strictObject({
+  type: z.literal('video'),
+  file: videoPathSchema,
+  /** Still shown before the video plays, and instead of it when motion is turned off. */
+  poster: imagePathSchema,
+  /** Describes the video for screen readers, like an image's alt text. */
+  alt: z.string(),
+  size: mediaSizeSchema,
+});
+
+export const mediaSchema = z.discriminatedUnion('type', [
+  imageMediaSchema,
+  videoMediaSchema,
+  youtubeMediaSchema,
+]);
 
 /** How an item page arranges its images (see docs/PLAN.md -> Per-item image layouts). */
 export const layoutSchema = z.discriminatedUnion('type', [
@@ -79,8 +103,10 @@ export const itemSchema = z.strictObject({
   description: z.string(),
   software: z.array(z.string().min(1)),
   client: z.string(),
-  /** Front-page grid thumbnail. */
-  cover: mediaPathSchema,
+  /** Front-page grid thumbnail, also used as the share image. */
+  cover: imagePathSchema,
+  /** Optional looping video shown on the grid tile instead, with `cover` as its poster. */
+  coverVideo: videoPathSchema.optional(),
   layout: layoutSchema,
   /** Gallery, in display order. */
   media: z.array(mediaSchema),
@@ -117,7 +143,7 @@ export const siteSchema = z.strictObject({
   resume: z.strictObject({
     pdf: mediaPathSchema,
     /** Image of the resume's first page, shown on the Resume page. */
-    preview: mediaPathSchema,
+    preview: imagePathSchema,
   }),
 });
 
@@ -131,6 +157,7 @@ export const redirectsSchema = z.array(z.strictObject({ from: slugSchema, to: sl
 export type Term = z.infer<typeof termSchema>;
 export type MediaSize = z.infer<typeof mediaSizeSchema>;
 export type ImageMedia = z.infer<typeof imageMediaSchema>;
+export type VideoMedia = z.infer<typeof videoMediaSchema>;
 export type YoutubeMedia = z.infer<typeof youtubeMediaSchema>;
 export type Media = z.infer<typeof mediaSchema>;
 export type Layout = z.infer<typeof layoutSchema>;

@@ -1,15 +1,16 @@
 # Concepts behind this project
 
 Short explainers for the techniques this project uses beyond the basics of pages, components and
-styles. A new section is added as each part of the site is built, with pointers to where the idea
-shows up in the code.
+styles. A new section is added as each step of [the plan](PLAN.md) is built, with pointers to where
+the idea shows up in the code.
 
-- [Check-in 1: project setup and site shell](#check-in-1-project-setup-and-site-shell)
-- [Check-in 2: content files, import and validation](#check-in-2-content-files-import-and-validation)
+- [Step 1a: project setup and site shell](#step-1a-project-setup-and-site-shell)
+- [Step 1b: content files, import and validation](#step-1b-content-files-import-and-validation)
+- [Step 1c: responsive images](#step-1c-responsive-images)
 
 ---
 
-## Check-in 1: project setup and site shell
+## Step 1a: project setup and site shell
 
 ### Static pre-rendering (why there is no server)
 
@@ -180,7 +181,7 @@ prefix, React Router writes pages into `build/client/<prefix>/`, which the deplo
 
 ---
 
-## Check-in 2: content files, import and validation
+## Step 1b: content files, import and validation
 
 ### Types vs. runtime validation (zod)
 
@@ -272,3 +273,135 @@ paths, and validation compares paths exactly rather than asking the file system.
 The importer refuses to run when `src/content/items/` already has items, unless you pass `--force`.
 Once content is edited by hand or in the admin, re-importing would silently throw those edits away,
 so the script makes that a deliberate choice.
+
+---
+
+## Step 1c: responsive images
+
+### Build-time image processing
+
+Browsers can't resize images, and the originals are far too big to send (a 3300 px, 2.9 MB PNG for
+an image shown 900 px wide). So `npm run images` (`scripts/images/`) uses
+[sharp](https://sharp.pixelplumbing.com/) to make web-ready copies of every image the content uses:
+
+- WebP at 400, 800, 1200 and 1920 px wide (never larger than the original). WebP is about a third
+  smaller than JPEG at the same quality.
+- One JPEG at 1200 px, for the rare browser without WebP.
+- Camera rotation applied and camera metadata (including location) removed.
+
+The copies go to `public/img/`, and a list of them with each image's size and main color goes to
+`src/generated/media.json`. Both are git-ignored, because they can always be rebuilt from the
+originals. That's the general rule: commit sources, not build output.
+
+**Caching by fingerprint.** Each original's contents are hashed (SHA-1). If the hash matches the
+last run and the files are still there, the image is skipped. The first run takes about 15 seconds;
+after that it's instant, and editing one image rebuilds only that one. `npm run dev` and
+`npm run build` run it first automatically (`predev` / `prebuild`).
+
+### `srcset` and `sizes`: letting the browser choose
+
+`<Picture>` (`src/components/Picture/`) renders:
+
+```html
+<picture>
+  <source type="image/webp"
+          srcset="img/ring/1-400.webp 400w, img/ring/1-800.webp 800w, img/ring/1-1200.webp 1200w, ..."
+          sizes="(min-width: 1024px) min(900px, calc(100vw - 423px)), calc(100vw - 32px)">
+  <img src="img/ring/1.jpg" width="3300" height="2550" alt="..." loading="lazy" decoding="async">
+</picture>
+```
+
+- **`srcset`** lists the files and their real widths.
+- **`sizes`** tells the browser how wide the image will be **displayed**, before the CSS has even
+  loaded. The browser multiplies that by the screen's pixel density and picks the smallest file
+  that's big enough. A phone showing the image 360 px wide on a 3× screen picks the 1200 px file; a
+  laptop showing it 880 px wide on a 2× screen picks 1920.
+- **`<source type="image/webp">`** is skipped by browsers that can't show WebP, which fall back to
+  the `<img>` JPEG.
+
+Getting `sizes` right matters: if it says `100vw` for an image that's really a 300 px grid tile, the
+browser downloads a file 3–4 times bigger than needed.
+
+### Lazy loading, layout shift and priority
+
+- **`loading="lazy"`**: the browser only downloads an image when it's about to scroll into view.
+  On a long item page, most images are never downloaded if the visitor doesn't scroll.
+- **`width` / `height`**: with the CSS `height: auto`, the browser knows the image's shape before
+  it loads and reserves exactly that space, so the text doesn't jump when images arrive.
+- **The main color as background**: fills that reserved space until the image appears.
+- **`priority`**: the first image on a page loads right away (`loading="eager"`,
+  `fetchpriority="high"`), since it's what visitors see first.
+
+### Loaders: data at build time, not in the visitor's download
+
+The item page has a `loader` function. React Router runs it **at build time** for every pre-rendered
+page, and the page component gets its result as `loaderData`:
+
+```ts
+export function loader({ params }) {
+  const item = getItem(params.slug);
+  if (!item) throw data(null, { status: 404 });
+  return { item, images: getImages(...) };
+}
+```
+
+Because only the loader touches `src/content`, the full list of items and images is never part of
+the JavaScript sent to visitors. Each page gets just its own data, saved at build time as a small
+`_.data` file next to its `index.html`. When a visitor clicks to another item, the browser fetches
+that file instead of a whole new page.
+
+`src/content/index.ts` is the one place pages read content from. It uses `import.meta.glob`, a Vite
+feature that imports every file matching a pattern (`./items/*.json`) at build time, so adding an
+item file needs no code change.
+
+### Pre-rendering from content
+
+`react-router.config.ts` now builds its `prerender` list from the content: the fixed pages plus
+`/portfolio-item/<slug>/` for every published item (`config/contentPaths.ts`). Add an item file and
+its page is generated on the next build; mark it as a draft and it isn't.
+
+### Videos instead of GIFs
+
+GIF is a 1987 format: at most 256 colors per frame, and every frame compressed on its own. A
+video codec like H.264 only stores what **changes** between frames, which suits a slowly rotating
+ring perfectly. That's why the 15 MB turnaround became a 2.5 MB MP4 with no visible difference,
+while animated WebP (which works more like a GIF) only got to 12.8 MB.
+
+`npm run gif-to-video` runs [ffmpeg](https://ffmpeg.org/) once per GIF, and the MP4 is committed as
+the new original. That keeps ffmpeg out of the normal build: anyone can build the site without
+installing it. A few ffmpeg settings worth knowing (`scripts/gif-to-video/`):
+
+- **CRF** (constant rate factor) sets quality instead of file size: lower is better and bigger. 26
+  looked identical to the GIFs here.
+- **`yuv420p`** is the pixel format every browser can play.
+- **`+faststart`** puts the video's index at the start of the file, so playback can begin before
+  the whole file has downloaded.
+
+### Lazy-loading a video with IntersectionObserver
+
+`<img loading="lazy">` is built into browsers, but `<video>` has no equivalent. `<LoopVideo>`
+(`src/components/LoopVideo/`) does it by hand:
+
+- The pre-rendered HTML has the `<video>` with only a **poster** image, and no `src`, so nothing
+  downloads.
+- After hydration, an **IntersectionObserver** watches it. The browser calls back when the element
+  comes within 200px of the screen; the component then sets `src` and plays. Scrolled away, it
+  pauses, which saves battery.
+- Browsers only autoplay videos that are **muted**, and set `muted` from code because React's
+  `muted` attribute isn't reliable.
+
+### Respecting "reduce motion" (`useSyncExternalStore`)
+
+Visitors can ask their operating system for less motion. CSS reads that with
+`@media (prefers-reduced-motion: reduce)`, and `src/hooks/usePrefersReducedMotion.ts` gives React
+the same answer. It uses `useSyncExternalStore`, React's hook for reading something that lives
+outside React (here the browser's media query): one function subscribes to changes, one reads the
+current value, and a third gives the value to use while pre-rendering, where there is no browser.
+With reduced motion on, videos show their poster with play controls instead of autoplaying.
+
+### Decorative images: `alt=""`
+
+On the home grid, each tile's link already contains the item's title as text. Giving the image
+`alt="Wall-E Necklace"` as well would make screen readers say the name twice. An **empty** `alt`
+marks an image as decorative so it's skipped. (Leaving `alt` out entirely is different and wrong:
+screen readers then read the file name.) The same goes for the tile video, via `aria-hidden`.

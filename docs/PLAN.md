@@ -58,6 +58,7 @@ Item file example:
 ```
 
 **Videos.**
+- Short silent clips (like the turnaround GIFs) are hosted with the site as looping MP4s: `{ "type": "video", "file": "….mp4", "poster": "….jpg", "alt": "…", "size": "normal" }`. An item can also have a `coverVideo` for its grid tile.
 - Four items have YouTube videos in their galleries: crocodile-necklace, cosmea-diamond-ring, floating-octahedron-ring (that one has two), and vincent-castiglia-the-sleep-necklace.
 - The old site shows them after the images, so they're imported at the end of `media`.
 - They come from the theme's `edge_portfolio_images` meta and become `youtube` entries in `media`.
@@ -172,9 +173,12 @@ Not covered by unit tests: visual components, snapshots, and end-to-end browser 
 - [x] ✅ Check-in 2: review the generated content files + migration report
 
 ### 1c. Image pipeline
-- [ ] sharp build step: WebP + JPEG at ~400 / 800 / 1200 / 1920 px, cached and git-ignored
-- [ ] Turnaround GIFs → animated WebP with GIF fallback (current GIFs are 13–15 MB)
-- [ ] `<Picture>` component: `srcset`/`sizes`, lazy loading, width/height to avoid layout shift
+- [x] sharp build step (`npm run images`): WebP at 400 / 800 / 1200 / 1920 px plus one 1200 px JPEG fallback, cached by file hash, git-ignored. Runs before dev and build.
+- [x] Turnaround GIFs (13–15 MB) → looping MP4 (H.264, CRF 26): 2.5 MB on the item page, 0.75 MB for the grid tile. Animated WebP was only 15–40% smaller, so videos won after a side-by-side comparison. New `video` media type and optional `coverVideo`; `npm run gif-to-video` for future GIFs
+- [x] `<LoopVideo>` component: lazy-loads and plays only when on screen, poster first, controls instead of autoplay for reduced motion
+- [x] Temporary home page: every item's cover in `grid.json` order, linking to its page (replaced by the real grid in 1d)
+- [x] `<Picture>` component: `srcset`/`sizes`, lazy loading, width/height to avoid layout shift, main color while loading
+- [x] Item pages pre-rendered from content, data loaded at build time (temporary single-column view until 1d)
 
 ### 1d. Public pages
 - [ ] Header / nav / footer matching the Anders look
