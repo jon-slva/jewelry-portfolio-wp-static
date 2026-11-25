@@ -1,0 +1,13 @@
+@use '../styles/variables' as *;
+
+// Shared styles for the placeholder pages. Each page gets its own module once
+// it has real content (phase 1d).
+
+.title {
+  font-size: 30px;
+}
+
+.note {
+  max-width: 640px;
+  color: $color-text-muted;
+}

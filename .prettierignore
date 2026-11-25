@@ -1,0 +1,6 @@
+build/
+legacy/
+_source/
+.react-router/
+docs/
+package-lock.json

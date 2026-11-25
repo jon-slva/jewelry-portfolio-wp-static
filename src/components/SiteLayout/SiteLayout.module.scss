@@ -1,0 +1,174 @@
+@use '../../styles/variables' as *;
+
+// ---- Mobile / tablet first: top bar with a menu button ----
+
+.frame {
+  min-height: 100vh;
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: $color-bg;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.topRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: $mobile-header-height;
+  padding: 0 $page-padding-mobile;
+}
+
+.logo img {
+  width: 190px;
+}
+
+.menuButton {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: $color-text;
+  cursor: pointer;
+}
+
+// Three-line "hamburger" drawn with one element and its shadows.
+.menuIcon {
+  width: 22px;
+  height: 2px;
+  background: currentColor;
+  box-shadow:
+    0 -7px 0 currentColor,
+    0 7px 0 currentColor;
+}
+
+// Drops down over the page content instead of pushing it down.
+.menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  padding: 8px $page-padding-mobile 24px;
+  background: $color-bg;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
+  &[data-open='true'] {
+    display: block;
+  }
+}
+
+.navList,
+.social {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navLink,
+.navActive {
+  display: inline-block;
+  padding: 6px 3px;
+  font-weight: $font-weight-regular;
+  line-height: 1.2;
+  transition: color $transition-fast;
+}
+
+.navLink:hover {
+  color: $color-text-muted;
+}
+
+// Active item: white text with a grey bar behind its lower half, as on the original site.
+.navActive {
+  background: linear-gradient($color-highlight, $color-highlight) no-repeat 0 75% / 100% 40%;
+}
+
+.social {
+  display: flex;
+  gap: 18px;
+  margin-top: 24px;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-small;
+
+  a:hover {
+    color: $color-text-muted;
+  }
+}
+
+.copyright {
+  max-width: 260px;
+  margin: 24px 0 0;
+  padding-top: 24px;
+  border-top: 1px solid $color-divider;
+  font-size: $font-size-small;
+  line-height: 2;
+}
+
+.content {
+  padding: $page-padding $page-padding-mobile;
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+// ---- Desktop: fixed sidebar on the left ----
+
+@media (min-width: $bp-desktop) {
+  .sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: $sidebar-width;
+    padding: 64px 45px;
+    overflow-y: auto;
+    border-bottom: 0;
+    border-right: 1px solid $color-divider;
+  }
+
+  .topRow {
+    height: auto;
+    padding: 0;
+  }
+
+  .logo img {
+    width: 252px;
+  }
+
+  .menuButton {
+    display: none;
+  }
+
+  .menu,
+  .menu[data-open='true'] {
+    display: block;
+    position: static;
+    padding: 0;
+    margin-top: 72px;
+    border-bottom: 0;
+  }
+
+  .navList li + li {
+    margin-top: 16px;
+  }
+
+  .social {
+    margin-top: 140px;
+    font-size: $font-size-base;
+  }
+
+  .content {
+    margin-left: $sidebar-width;
+    padding: $page-padding;
+  }
+}

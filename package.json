@@ -1,17 +1,46 @@
 {
-	"name": "simply-static-1-1715834737",
-	"homepage": "http://jon-slva.github.io/jewelry-portfolio/",
-	"version": "1.0.0",
-	"description": "",
-	"main": "index.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"deploy": "gh-pages -d ."
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"devDependencies": {
-		"gh-pages": "^6.1.1"
-	}
+  "name": "jewelry-portfolio",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Jewelry portfolio of Jonathan Silva - static React site with a local content admin.",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "react-router dev",
+    "build": "react-router build",
+    "preview": "vite preview --outDir build/client",
+    "typecheck": "react-router typegen && tsc --noEmit",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@react-router/node": "^8.5.2",
+    "isbot": "^5.2.3",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-router": "^8.5.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@react-router/dev": "^8.5.2",
+    "@types/node": "^24.19.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "eslint": "^10.15.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "gh-pages": "^6.3.0",
+    "globals": "^17.14.0",
+    "prettier": "^3.10.1",
+    "sass": "^1.108.2",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.74.0",
+    "vite": "^8.3.8",
+    "vitest": "^5.1.1"
+  }
 }

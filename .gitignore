@@ -20,3 +20,7 @@ _source/
 !.vscode/extensions.json
 .idea/
 *.log
+
+# React Router generated types and build output
+.react-router/
+build/

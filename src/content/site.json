@@ -1,0 +1,10 @@
+{
+  "title": "Jewelry by Jonathan Silva",
+  "tagline": "Portfolio of CAD/CAM Designer Jonathan Silva",
+  "logo": "media/site/logo.png",
+  "copyright": "All designs are property of Jonathan Silva unless otherwise stated",
+  "social": [
+    { "label": "LinkedIn", "url": "https://www.linkedin.com/in/jonathansilva761/" },
+    { "label": "Behance", "url": "https://www.behance.net/jonathansilva" }
+  ]
+}
