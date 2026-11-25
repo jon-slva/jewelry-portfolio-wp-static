@@ -32,7 +32,8 @@ versions of the images (see [Images](#images)). The very first time that takes a
 | ---------------------- | ------------------------------------------------------------------------------ |
 | `npm run dev`          | Run the site locally with live reload                                          |
 | `npm run build`        | Check the content, then build the static site into `build/client/`             |
-| `npm run preview`      | Serve the last build locally, to check it before deploying                     |
+| `npm run preview`      | Serve the last build locally, the way GitHub Pages will                        |
+| `npm run deploy`       | Build the preview and publish it to GitHub Pages (see [Deploying](#deploying)) |
 | `npm run images`       | Build web-sized copies of the content images (runs before dev and build)       |
 | `npm run gif-to-video` | Turn an animated GIF into a much smaller looping video (see [Images](#images)) |
 | `npm run validate`     | Check the content files for mistakes (see [Content](#content))                 |
@@ -42,7 +43,40 @@ versions of the images (see [Images](#images)). The very first time that takes a
 | `npm run format`       | Auto-format code (Prettier)                                                    |
 | `npm test`             | Run the unit tests once (`npm run test:watch` to keep watching)                |
 
-<!-- TODO(phase 1e): deploy instructions. TODO(phase 2): admin instructions. -->
+## Deploying
+
+The site is published with GitHub Pages from the `gh-pages` branch, which `npm run deploy` writes.
+Until launch, it goes to the **preview address**,
+https://jon-slva.github.io/jewelry-portfolio-wp-static/, while jewelrybyjs.com stays on WordPress.
+
+```bash
+npm run deploy
+```
+
+That runs, and stops at the first problem:
+
+1. the unit tests
+2. the content check (`npm run validate`) and the image build
+3. the site build, for the preview address
+4. a final step that arranges the files for GitHub Pages (`scripts/postbuild/`): the 404 page,
+   `robots.txt`, old-URL redirects
+5. publishing `build/client/` to the `gh-pages` branch
+
+GitHub Pages updates the site a minute or two later. Preview builds tell search engines not to
+index them, so they don't compete with the real site.
+
+To check a build locally first, exactly as it will be published:
+
+```bash
+npm run build:preview
+npm run preview:gh   # http://localhost:4173/jewelry-portfolio-wp-static/
+```
+
+`npm run build` followed by `npm run preview` does the same for the final address
+(https://jewelrybyjs.com/, indexable, with a sitemap). Switching the domain over is a separate
+launch step (see [docs/PLAN.md](docs/PLAN.md), phase 3).
+
+<!-- TODO(phase 2): admin instructions. -->
 
 ## Project layout
 

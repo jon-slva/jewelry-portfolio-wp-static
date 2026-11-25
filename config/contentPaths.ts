@@ -4,6 +4,9 @@ import path from 'node:path';
 // Pages generated from the content, for pre-rendering. Read straight from the
 // item files because this runs inside react-router.config.ts, before Vite.
 
+/** Pages that always exist, whatever the content. */
+export const FIXED_PAGES = ['/', '/resume/', '/contact-me/'];
+
 interface ItemSummary {
   slug: string;
   draft: boolean;

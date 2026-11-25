@@ -3,6 +3,7 @@ import { data } from 'react-router';
 import Lightbox from '../../components/Lightbox/Lightbox';
 import { categories, getImage, getItem, getVideo, tags } from '../../content';
 import site from '../../content/site.json';
+import { itemDescription, pageMeta } from '../../seo.ts';
 import type { Route } from './+types/ItemPage';
 import ItemDetails from './ItemDetails';
 import ItemMedia from './ItemMedia';
@@ -33,6 +34,7 @@ export function loader({ params }: Route.LoaderArgs) {
   return {
     item,
     media,
+    cover: getImage(item.cover),
     itemCategories: categories.filter((term) => item.categories.includes(term.slug)),
     itemTags: tags.filter((term) => item.tags.includes(term.slug)),
   };
@@ -40,8 +42,14 @@ export function loader({ params }: Route.LoaderArgs) {
 
 export function meta({ loaderData }: Route.MetaArgs) {
   if (!loaderData) return [{ title: `Not found – ${site.title}` }];
-  // TODO(phase 1e): description, canonical URL and Open Graph image from the item.
-  return [{ title: `${loaderData.item.title} – ${site.title}` }];
+  const { item, cover, itemCategories } = loaderData;
+  return pageMeta({
+    title: item.title,
+    description: itemDescription({ ...item, categoryNames: itemCategories.map((c) => c.name) }),
+    path: `/portfolio-item/${item.slug}/`,
+    image: cover,
+    type: 'article',
+  });
 }
 
 export default function ItemPage({ loaderData }: Route.ComponentProps) {

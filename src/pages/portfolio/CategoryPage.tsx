@@ -1,6 +1,7 @@
 import { data } from 'react-router';
 import { categories } from '../../content';
 import site from '../../content/site.json';
+import { pageMeta } from '../../seo.ts';
 import type { Route } from './+types/CategoryPage';
 import { loadPortfolio } from './portfolio.data.ts';
 import PortfolioView from './PortfolioView';
@@ -15,7 +16,13 @@ export function loader({ params }: Route.LoaderArgs) {
 
 export function meta({ loaderData }: Route.MetaArgs) {
   if (!loaderData) return [{ title: `Not found – ${site.title}` }];
-  return [{ title: `${loaderData.category.name} – ${site.title}` }];
+  const { category, tiles } = loaderData;
+  return pageMeta({
+    title: category.name,
+    description: `${category.name}: ${tiles.length} pieces from the portfolio of CAD/CAM designer Jonathan Silva.`,
+    path: `/portfolio-category/${category.slug}/`,
+    image: tiles[0]?.cover,
+  });
 }
 
 export default function CategoryPage({ loaderData }: Route.ComponentProps) {

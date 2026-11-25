@@ -203,12 +203,13 @@ Not covered by unit tests: visual components, snapshots, and end-to-end browser 
 - [ ] ✅ Check-in 3: click through the whole site locally
 
 ### 1e. SEO & deploy
-- [ ] Check unknown URLs in the production build (404.html → `HydrateFallback` → not-found page). In dev they log a harmless hydration warning, because the dev server renders the 404 page while the browser expects the fallback.
-- [ ] Pre-render every route with trailing slashes. GitHub Pages then serves real HTML files, so deep links and refresh work without the SPA redirect hack. `404.html` covers unknown URLs.
-- [ ] Per-page `<title>`, description, canonical, Open Graph / Twitter image per item
-- [ ] `sitemap.xml` + `robots.txt` generated from content
-- [ ] `npm run deploy` (validate → test → build → gh-pages) → preview at the project URL
-- [ ] README: install, run, build, validate, deploy
+- [x] Check unknown URLs in the production build (404.html → `HydrateFallback` → not-found page). In dev they log a harmless hydration warning, because the dev server renders the 404 page while the browser expects the fallback.
+- [x] Pre-render every route with trailing slashes. GitHub Pages then serves real HTML files, so deep links and refresh work without the SPA redirect hack. `404.html` covers unknown URLs.
+- [x] Per-page `<title>`, description, canonical, Open Graph / Twitter image per item (`src/seo.ts`). Preview builds are `noindex`.
+- [x] `sitemap.xml` (final site only) + `robots.txt` generated from content; `.nojekyll`; redirect pages for `redirects.json` (moved here from phase 3)
+- [x] `npm run deploy` (test → validate → images → build → post-build → gh-pages) → preview at the project URL
+- [x] `npm run preview` serves the build the way GitHub Pages does (base path, 404.html)
+- [x] README: install, run, build, validate, deploy
 - [ ] ✅ Check-in 4 → branch complete → push for review
 
 ## Phase 2 — Local admin (`feature/admin`)
@@ -241,7 +242,7 @@ Not covered by unit tests: visual components, snapshots, and end-to-end browser 
 ## Phase 3 — Launch (`feature/launch`)
 
 - [ ] Side-by-side check against `docs/reference/` and the live site (content, order, filters, layouts)
-- [ ] Redirect pages for old slugs of real items (from `_wp_old_slug`)
+- [x] Redirect pages for old slugs of real items (from `_wp_old_slug`): done in 1e
 - [ ] Remove `legacy/wp-export/` and the old `package.json` scripts
 - [ ] Build with base `/`, add `CNAME` (`jewelrybyjs.com`)
 - [ ] README: DNS steps (A/AAAA records + `www` CNAME), the GitHub Pages custom domain setting and HTTPS

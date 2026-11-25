@@ -1,6 +1,6 @@
 import type { Config } from '@react-router/dev/config';
 import { basePath } from './config/basePath.ts';
-import { contentPaths, readItemSummaries } from './config/contentPaths.ts';
+import { contentPaths, FIXED_PAGES, readItemSummaries } from './config/contentPaths.ts';
 
 export default {
   // App source lives in src/ (React Router defaults to app/).
@@ -18,14 +18,8 @@ export default {
 
   // Pages to render at build time: the fixed pages, plus one per published item
   // and per category and tag in use.
-  prerender: () => [
-    '/',
-    '/resume/',
-    '/contact-me/',
-    ...contentPaths(readItemSummaries('src/content')),
-  ],
+  prerender: () => [...FIXED_PAGES, ...contentPaths(readItemSummaries('src/content'))],
 
-  // TODO(phase 1e): with a non-root BASE_PATH, pages are written to
-  // build/client/<base>/... - the deploy step must flatten that folder into the
-  // published root (and add 404.html) for GitHub Pages.
+  // After the build, scripts/postbuild/ rearranges build/client/ for GitHub
+  // Pages (base path folder, 404.html) and adds sitemap.xml and robots.txt.
 } satisfies Config;

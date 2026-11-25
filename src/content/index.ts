@@ -49,3 +49,9 @@ export function getVideo(path: string): VideoInfo | undefined {
 export function getFile(path: string): FileInfo | undefined {
   return manifest.files[path];
 }
+
+/** Image for link previews of pages that have none of their own: the first item's cover. */
+export function defaultShareImage(): ImageInfo | undefined {
+  const first = grid.items.map((slug) => getItem(slug)).find((item) => item !== undefined);
+  return first ? getImage(first.cover) : undefined;
+}

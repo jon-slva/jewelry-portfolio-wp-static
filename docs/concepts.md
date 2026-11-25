@@ -8,6 +8,7 @@ the idea shows up in the code.
 - [Step 1b: content files, import and validation](#step-1b-content-files-import-and-validation)
 - [Step 1c: responsive images](#step-1c-responsive-images)
 - [Step 1d: portfolio grid and filters](#step-1d-portfolio-grid-and-filters)
+- [Step 1e: SEO and deploying](#step-1e-seo-and-deploying)
 
 ---
 
@@ -547,3 +548,64 @@ The LinkedIn and Behance icons are SVG paths written straight into the HTML
 extra download, stay sharp at any size, and take their color from the text (`fill="currentColor"`),
 so the hover color change is plain CSS. The link gets an `aria-label` ("LinkedIn"), and the SVG is
 `aria-hidden`, since a screen reader can't read a drawing.
+
+---
+
+## Step 1e: SEO and deploying
+
+### The tags search engines and link previews read
+
+`src/seo.ts` builds each page's `<head>` tags in one place (`pageMeta()`), from a title, a
+description, the page's path and an image:
+
+- **`<title>`** and **`<meta name="description">`**: the blue link and the grey text in search
+  results.
+- **Canonical URL** (`<link rel="canonical">`): the one official address of the page. The same page
+  can be reached several ways (with or without a trailing slash, on a preview copy), and this tells
+  search engines which one to count, so they don't split its ranking.
+- **Open Graph** (`og:title`, `og:description`, `og:image`, `og:url`): the card LinkedIn, Facebook,
+  Slack, iMessage and others show when someone shares a link. The image is the item's cover, using
+  the 1200px JPEG, since not every preview service reads WebP.
+- **`twitter:card`**: the same idea for X/Twitter, which reads the Open Graph tags but needs this
+  one to show a large image.
+
+These all need **absolute** addresses (`https://…`), because they're read by other sites. The
+address comes from `config/site.ts` at build time and is written into the code by Vite's `define`
+option (`__SITE_URL__`, declared in `src/build-env.d.ts`).
+
+### Keeping previews out of search results
+
+The preview copy on github.io has the same content as the real site. If search engines indexed
+both, they'd compete with each other, and while WordPress is still live, with that too. So preview
+builds add `<meta name="robots" content="noindex, nofollow">` to every page and a `robots.txt`
+that turns crawlers away. The final build instead gets a `robots.txt` that points to
+`sitemap.xml`, the list of every page that search engines should know about.
+
+### What a static host needs besides the pages
+
+`scripts/postbuild/` runs after every build and adds what GitHub Pages expects:
+
+- **`404.html`**: GitHub Pages serves this for any address with no file. It's React Router's
+  fallback page, so the app starts, works out that the address is unknown, and shows the "Page not
+  found" page, with the sidebar and menu, instead of a bare error.
+- **`.nojekyll`**: GitHub Pages runs every site through Jekyll (a blog tool) unless this empty file
+  exists. Jekyll skips files whose names start with `_`, which would hide the `_.data` files each
+  page loads its data from.
+- **Redirect pages**: a static host can't send real "moved permanently" (301) responses, so each old
+  item address in `redirects.json` gets a tiny page that forwards the browser instantly (a meta
+  refresh), with a canonical tag pointing search engines to the new address.
+- **The base path folder**: with a base path, React Router writes the pages into
+  `build/client/jewelry-portfolio-wp-static/`. GitHub Pages already serves the site from that
+  path, so the folder is moved up one level.
+
+### Deploying with the `gh-pages` branch
+
+GitHub Pages publishes whatever is on one branch of the repo, here `gh-pages`. That branch holds
+only the built site, never the source. `npm run deploy` builds the site, then the
+[gh-pages](https://github.com/tschaub/gh-pages) tool commits `build/client/` to that branch and
+pushes it. Each deploy is a new commit, so an earlier version can be restored from the branch
+history if needed.
+
+`npm run preview` is a small local server (`scripts/preview/`) that serves the build with GitHub
+Pages' rules (the base path, `404.html` with a 404 status, folders served by their `index.html`),
+so problems show up before deploying rather than after.

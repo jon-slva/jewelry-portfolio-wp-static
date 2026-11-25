@@ -1,18 +1,25 @@
+import { defaultShareImage } from '../../content';
 import site from '../../content/site.json';
+import { pageMeta } from '../../seo.ts';
 import pageStyles from '../page.module.scss';
 import ContactForm from './ContactForm';
+import type { Route } from './+types/ContactPage';
 import styles from './ContactPage.module.scss';
 
 const linkedIn = site.social.find((link) => link.label.toLowerCase() === 'linkedin');
 
-export function meta() {
-  return [
-    { title: `Contact Me – ${site.title}` },
-    {
-      name: 'description',
-      content: `Get in touch with ${site.title.replace(/^Jewelry by /, '')}.`,
-    },
-  ];
+// Only for the share image; runs at build time.
+export function loader() {
+  return { shareImage: defaultShareImage() };
+}
+
+export function meta({ loaderData }: Route.MetaArgs) {
+  return pageMeta({
+    title: 'Contact Me',
+    description: `Get in touch with ${site.title.replace(/^Jewelry by /, '')} about commissions, collaborations or CAD/CAM work.`,
+    path: '/contact-me/',
+    image: loaderData?.shareImage,
+  });
 }
 
 export default function ContactPage() {

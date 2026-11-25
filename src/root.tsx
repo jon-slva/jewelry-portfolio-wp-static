@@ -13,13 +13,15 @@ import SiteLayout from './components/SiteLayout/SiteLayout';
 import site from './content/site.json';
 import './styles/global.scss';
 
-// Page title when a page fails and the error page below is shown instead.
-// (Pages that load normally set their own title, which replaces this one.)
+// Title for error pages and for the 404 fallback page (see HydrateFallback),
+// none of which search engines should index. Pages that load normally set
+// their own tags, which replace these.
 export function meta({ error }: Route.MetaArgs) {
+  const noindex = { name: 'robots', content: 'noindex' };
   if (isRouteErrorResponse(error) && error.status === 404) {
-    return [{ title: `Page not found – ${site.title}` }];
+    return [{ title: `Page not found – ${site.title}` }, noindex];
   }
-  return [{ title: error ? `Something went wrong – ${site.title}` : site.title }];
+  return [{ title: error ? `Something went wrong – ${site.title}` : site.title }, noindex];
 }
 
 export const links: Route.LinksFunction = () => [

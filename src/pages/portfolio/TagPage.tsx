@@ -1,6 +1,7 @@
 import { data } from 'react-router';
 import { tags } from '../../content';
 import site from '../../content/site.json';
+import { pageMeta } from '../../seo.ts';
 import type { Route } from './+types/TagPage';
 import { loadPortfolio } from './portfolio.data.ts';
 import PortfolioView from './PortfolioView';
@@ -15,7 +16,13 @@ export function loader({ params }: Route.LoaderArgs) {
 
 export function meta({ loaderData }: Route.MetaArgs) {
   if (!loaderData) return [{ title: `Not found – ${site.title}` }];
-  return [{ title: `${loaderData.tag.name} – ${site.title}` }];
+  const { tag, tiles } = loaderData;
+  return pageMeta({
+    title: tag.name,
+    description: `Pieces tagged “${tag.name}” from the portfolio of CAD/CAM designer Jonathan Silva.`,
+    path: `/portfolio-tag/${tag.slug}/`,
+    image: tiles[0]?.cover,
+  });
 }
 
 export default function TagPage({ loaderData }: Route.ComponentProps) {

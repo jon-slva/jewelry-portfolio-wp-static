@@ -1,6 +1,7 @@
 import Picture from '../../components/Picture/Picture';
 import { getFile, getImage } from '../../content';
 import site from '../../content/site.json';
+import { pageMeta } from '../../seo.ts';
 import pageStyles from '../page.module.scss';
 import type { Route } from './+types/ResumePage';
 import styles from './ResumePage.module.scss';
@@ -12,11 +13,13 @@ export function loader() {
   };
 }
 
-export function meta() {
-  return [
-    { title: `Resume – ${site.title}` },
-    { name: 'description', content: `Resume of ${site.tagline.replace(/^Portfolio of /, '')}.` },
-  ];
+export function meta({ loaderData }: Route.MetaArgs) {
+  return pageMeta({
+    title: 'Resume',
+    description: `Resume of ${site.tagline.replace(/^Portfolio of /, '')}: experience, education and skills.`,
+    path: '/resume/',
+    image: loaderData?.preview,
+  });
 }
 
 export default function ResumePage({ loaderData }: Route.ComponentProps) {
