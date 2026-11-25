@@ -1,4 +1,4 @@
-import { data } from 'react-router';
+import { data, Link } from 'react-router';
 import LoopVideo from '../../components/LoopVideo/LoopVideo';
 import Picture from '../../components/Picture/Picture';
 import { categories, getImages, getItem, getVideos, tags } from '../../content';
@@ -15,15 +15,16 @@ export function loader({ params }: Route.LoaderArgs) {
     media.type === 'image' ? [media.file] : media.type === 'video' ? [media.poster] : [],
   );
   const videoPaths = item.media.flatMap((media) => (media.type === 'video' ? [media.file] : []));
-  const termNames = (terms: typeof categories, slugs: string[]) =>
-    slugs.map((slug) => terms.find((term) => term.slug === slug)?.name ?? slug);
+  // The item's categories and tags with their display names, for linking.
+  const pick = (terms: typeof categories, slugs: string[]) =>
+    terms.filter((term) => slugs.includes(term.slug));
 
   return {
     item,
     images: getImages(imagePaths),
     videos: getVideos(videoPaths),
-    categoryNames: termNames(categories, item.categories),
-    tagNames: termNames(tags, item.tags),
+    itemCategories: pick(categories, item.categories),
+    itemTags: pick(tags, item.tags),
   };
 }
 
@@ -34,7 +35,7 @@ export function meta({ loaderData }: Route.MetaArgs) {
 }
 
 export default function ItemPage({ loaderData }: Route.ComponentProps) {
-  const { item, images, videos, categoryNames, tagNames } = loaderData;
+  const { item, images, videos, itemCategories, itemTags } = loaderData;
 
   return (
     <article className={styles.item}>
@@ -58,11 +59,15 @@ export default function ItemPage({ loaderData }: Route.ComponentProps) {
             </>
           )}
           <dt>Category</dt>
-          <dd>{categoryNames.join(', ')}</dd>
-          {tagNames.length > 0 && (
+          <dd>
+            <TermLinks terms={itemCategories} base="/portfolio-category/" />
+          </dd>
+          {itemTags.length > 0 && (
             <>
               <dt>Tags</dt>
-              <dd>{tagNames.join(', ')}</dd>
+              <dd>
+                <TermLinks terms={itemTags} base="/portfolio-tag/" />
+              </dd>
             </>
           )}
         </dl>
@@ -110,4 +115,16 @@ export default function ItemPage({ loaderData }: Route.ComponentProps) {
       </div>
     </article>
   );
+}
+
+/** Comma-separated links to category or tag pages. */
+function TermLinks({ terms, base }: { terms: { slug: string; name: string }[]; base: string }) {
+  return terms.map((term, i) => (
+    <span key={term.slug}>
+      {i > 0 && ', '}
+      <Link to={`${base}${term.slug}/`} className={styles.termLink}>
+        {term.name}
+      </Link>
+    </span>
+  ));
 }

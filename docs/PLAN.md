@@ -182,24 +182,25 @@ Not covered by unit tests: visual components, snapshots, and end-to-end browser 
 
 ### 1d. Public pages
 - [ ] Header / nav / footer matching the Anders look
-- [ ] Front-page grid:
+- [x] Front-page grid:
   - order and settings from `grid.json`
   - overlay hover
   - featured tiles
-- [ ] Filters:
+- [x] Filters:
   - category filter bar and tag filtering, driven by data
-  - reflected in the URL so filtered views can be linked
+  - reflected in the URL so filtered views can be linked (each filter is its own pre-rendered page)
 - [ ] Item page:
   - text block, Software / Client, categories, tags
   - images and videos in the item's chosen layout (masonry / stacked / gallery)
   - lightbox
   - click-to-play YouTube embeds
-- [ ] `/portfolio-category/<slug>/` and `/portfolio-tag/<slug>/` pages (filtered grid), so old links keep working
+- [x] `/portfolio-category/<slug>/` and `/portfolio-tag/<slug>/` pages (filtered grid), so old links keep working. Item pages link their categories and tags to them.
 - [ ] Resume (PDF link + preview image), Contact (Web3Forms), 404
 - [ ] Responsive + accessible: keyboard filters, focus states, alt text, reduced-motion
 - [ ] ✅ Check-in 3: click through the whole site locally
 
 ### 1e. SEO & deploy
+- [ ] Check unknown URLs in the production build (404.html → `HydrateFallback` → not-found page). In dev they log a harmless hydration warning, because the dev server renders the 404 page while the browser expects the fallback.
 - [ ] Pre-render every route with trailing slashes. GitHub Pages then serves real HTML files, so deep links and refresh work without the SPA redirect hack. `404.html` covers unknown URLs.
 - [ ] Per-page `<title>`, description, canonical, Open Graph / Twitter image per item
 - [ ] `sitemap.xml` + `robots.txt` generated from content

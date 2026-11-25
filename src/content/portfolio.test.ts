@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { filterItems, getGridItems } from './portfolio.ts';
+import { filterItems, getGridItems, termsInUse } from './portfolio.ts';
 import type { Grid, Item } from './schema.ts';
 
 const item = (slug: string, fields: Partial<Item> = {}): Item => ({
@@ -54,5 +54,18 @@ describe('filterItems', () => {
     expect(slugs(filterItems(items, { category: 'fine' }))).toEqual(['ring', 'pendant']);
     expect(slugs(filterItems(items, { tag: 'gold' }))).toEqual(['ring', 'skull']);
     expect(slugs(filterItems(items, { category: 'fine', tag: 'gold' }))).toEqual(['ring']);
+  });
+});
+
+describe('termsInUse', () => {
+  it('keeps only terms some item uses, in list order', () => {
+    const terms = [
+      { slug: 'art', name: 'Art' },
+      { slug: 'fine', name: 'Fine' },
+      { slug: 'sculpture', name: 'Sculpture' },
+    ];
+    const items = [item('a', { categories: ['sculpture'] }), item('b', { categories: ['art'] })];
+    expect(termsInUse(terms, items, 'categories').map((t) => t.slug)).toEqual(['art', 'sculpture']);
+    expect(termsInUse(terms, items, 'tags')).toEqual([]);
   });
 });

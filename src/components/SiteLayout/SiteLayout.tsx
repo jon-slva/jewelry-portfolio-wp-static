@@ -1,8 +1,8 @@
 import { useState, type PropsWithChildren } from 'react';
-import { Link, NavLink } from 'react-router';
+import { Link, useLocation } from 'react-router';
 import logo from '../../content/media/site/logo.png';
 import site from '../../content/site.json';
-import { mainNav } from './navigation';
+import { isNavActive, mainNav } from './navigation';
 import styles from './SiteLayout.module.scss';
 
 /**
@@ -11,6 +11,7 @@ import styles from './SiteLayout.module.scss';
  */
 export default function SiteLayout({ children }: PropsWithChildren) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { pathname } = useLocation();
   const closeMenu = () => setMenuOpen(false);
   const year = new Date().getFullYear();
 
@@ -36,18 +37,21 @@ export default function SiteLayout({ children }: PropsWithChildren) {
         <div id="site-menu" className={styles.menu} data-open={menuOpen}>
           <nav aria-label="Main">
             <ul className={styles.navList}>
-              {mainNav.map((item) => (
-                <li key={item.to}>
-                  <NavLink
-                    to={item.to}
-                    end
-                    className={({ isActive }) => (isActive ? styles.navActive : styles.navLink)}
-                    onClick={closeMenu}
-                  >
-                    {item.label}
-                  </NavLink>
-                </li>
-              ))}
+              {mainNav.map((item) => {
+                const active = isNavActive(item, pathname);
+                return (
+                  <li key={item.to}>
+                    <Link
+                      to={item.to}
+                      className={active ? styles.navActive : styles.navLink}
+                      aria-current={active ? 'page' : undefined}
+                      onClick={closeMenu}
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
 

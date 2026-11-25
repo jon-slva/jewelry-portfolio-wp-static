@@ -26,3 +26,13 @@ export function filterItems(items: Item[], { category, tag }: ItemFilter): Item[
       (!category || item.categories.includes(category)) && (!tag || item.tags.includes(tag)),
   );
 }
+
+/** The terms (categories or tags) at least one of the items uses, in their list order. */
+export function termsInUse<T extends { slug: string }>(
+  terms: T[],
+  items: Item[],
+  key: 'categories' | 'tags',
+): T[] {
+  const used = new Set(items.flatMap((item) => item[key]));
+  return terms.filter((term) => used.has(term.slug));
+}

@@ -1,0 +1,12 @@
+@use '../../styles/variables' as *;
+
+.title {
+  margin: 0;
+  font-size: 30px;
+}
+
+.intro {
+  margin: -24px 0 32px;
+  color: $color-text-muted;
+  text-align: center;
+}

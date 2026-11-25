@@ -7,6 +7,7 @@ the idea shows up in the code.
 - [Step 1a: project setup and site shell](#step-1a-project-setup-and-site-shell)
 - [Step 1b: content files, import and validation](#step-1b-content-files-import-and-validation)
 - [Step 1c: responsive images](#step-1c-responsive-images)
+- [Step 1d: portfolio grid and filters](#step-1d-portfolio-grid-and-filters)
 
 ---
 
@@ -405,3 +406,61 @@ On the home grid, each tile's link already contains the item's title as text. Gi
 `alt="Wall-E Necklace"` as well would make screen readers say the name twice. An **empty** `alt`
 marks an image as decorative so it's skipped. (Leaving `alt` out entirely is different and wrong:
 screen readers then read the file name.) The same goes for the tile video, via `aria-hidden`.
+
+---
+
+## Step 1d: portfolio grid and filters
+
+### Filters as pages, not state
+
+On the old site, clicking "Fine" filtered the grid in place with JavaScript, and the address bar
+didn't change. Here each filter is a **link to its own page**, `/portfolio-category/fine/`:
+
+- The filtered view has a URL you can bookmark or send, and the browser's back button works.
+- It's the same URL WordPress used, so old links and search results keep working.
+- Each one is pre-rendered like any other page, so search engines see it.
+- It still feels instant: after the first page, React Router fetches only that page's small data
+  file (`_.data`) and swaps the grid. `preventScrollReset` on the filter links keeps the scroll
+  position, so only the grid changes.
+
+The home, category and tag pages are three thin route modules (`src/pages/portfolio/`) that share
+one loader helper (`portfolio.data.ts`) and one view (`PortfolioView.tsx`).
+
+### `aria-current` for "you are here"
+
+The active filter and the active menu item get `aria-current="page"`. Screen readers announce it
+("Fine, current page"), so the highlight isn't only visual. "Portfolio" in the menu stays active
+on category, tag and item pages too (`isNavActive` in `src/components/SiteLayout/navigation.ts`).
+
+### Passing data to CSS with custom properties
+
+The number of tiles per row comes from `grid.json`, which the admin will edit, so it can't be
+hard-coded in the stylesheet. `PortfolioGrid` passes the values as CSS custom properties on the
+element:
+
+```tsx
+<ul style={{ '--columns-wide': 5, '--columns-tablet': 2, '--gap': '10px' }}>
+```
+
+and the stylesheet uses them inside its media queries:
+`grid-template-columns: repeat(var(--columns-wide), minmax(0, 1fr))`. Data stays in data, and layout
+stays in CSS.
+
+One catch: the `sizes` attribute on images is read by the browser before CSS, so it **can't** use
+CSS variables. `PortfolioGrid` builds `sizes` from the same column counts in TypeScript instead.
+
+### `grid-auto-flow: dense` for featured tiles
+
+A featured tile spans 2 columns × 2 rows. With normal placement that leaves holes when the next
+tile doesn't fit on the row. `grid-auto-flow: row dense` lets later tiles move back to fill those
+holes. The order shifts a little around a featured tile, but there are no gaps.
+
+### `HydrateFallback`: pages that weren't pre-rendered
+
+Every known page is pre-rendered. A mistyped address like `/portfolio-tag/nope/` has no HTML file,
+so the host serves a generic fallback page instead (the 404 page from step 1e). React Router
+renders the root's `HydrateFallback` there (here just the empty sidebar frame) while it loads in the
+browser and works out what to show, which for an unknown slug is the "Page not found" page.
+
+The root also has a `meta` export now. Normal pages replace it with their own title, so it only
+shows on error pages ("Page not found – Jewelry by Jonathan Silva").

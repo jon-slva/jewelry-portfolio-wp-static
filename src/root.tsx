@@ -10,7 +10,17 @@ import {
 import type { Route } from './+types/root';
 import NotFound from './components/NotFound/NotFound';
 import SiteLayout from './components/SiteLayout/SiteLayout';
+import site from './content/site.json';
 import './styles/global.scss';
+
+// Page title when a page fails and the error page below is shown instead.
+// (Pages that load normally set their own title, which replaces this one.)
+export function meta({ error }: Route.MetaArgs) {
+  if (isRouteErrorResponse(error) && error.status === 404) {
+    return [{ title: `Page not found – ${site.title}` }];
+  }
+  return [{ title: error ? `Something went wrong – ${site.title}` : site.title }];
+}
 
 export const links: Route.LinksFunction = () => [
   // TODO(phase 1d): consider self-hosting Montserrat instead of Google Fonts.
@@ -47,6 +57,15 @@ export default function App() {
       <Outlet />
     </SiteLayout>
   );
+}
+
+/**
+ * Shown for a URL that wasn't pre-rendered (e.g. a mistyped address) while
+ * the browser loads the app and works out which page it is. Just the empty
+ * frame, so the sidebar doesn't flash.
+ */
+export function HydrateFallback() {
+  return <SiteLayout>{null}</SiteLayout>;
 }
 
 /** Shown when a page throws, e.g. an unknown portfolio item slug. */

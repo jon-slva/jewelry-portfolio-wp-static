@@ -38,6 +38,16 @@
   }
 }
 
+.termLink {
+  text-decoration: underline;
+  text-decoration-color: $color-text-muted;
+  text-underline-offset: 3px;
+
+  &:hover {
+    color: $color-text-muted;
+  }
+}
+
 .media {
   display: grid;
   gap: 10px;
