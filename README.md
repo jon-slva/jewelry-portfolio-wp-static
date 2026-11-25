@@ -73,7 +73,7 @@ Everything the site shows lives in `src/content/` as plain JSON files and images
 
 ```
 src/content/
-  site.json            title, tagline, logo, social links, resume PDF
+  site.json            title, tagline, logo, social links, contact form key, resume PDF
   grid.json            front-page order of the items, plus tiles per row and spacing
   categories.json      categories, in filter-bar order
   tags.json            tags
@@ -97,6 +97,14 @@ Until the admin exists, edit these files directly. A few things to know:
 Run `npm run validate` after editing. It lists any mistakes: a misspelled field, a missing image, an
 unknown category or tag, an item missing from `grid.json`. The build runs the same check and stops
 if anything is wrong.
+
+### Contact form
+
+The Contact page form is delivered by [Web3Forms](https://web3forms.com), which emails each message
+to you. To switch it on, get a free access key there (enter your email; the key arrives by email)
+and paste it into `contactFormKey` in `src/content/site.json`. While it's empty, the page shows a
+note instead of the form and `npm run validate` reminds you. The key is safe to publish: it can
+only send to your address.
 
 ### Importing from WordPress
 

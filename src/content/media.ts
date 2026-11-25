@@ -10,7 +10,8 @@
 //     "fallback": "img/reza-ruban-ring/1.jpg"
 //   }
 //
-// Videos (.mp4) are already web-ready, so they're copied as they are.
+// Videos (.mp4) and other files (the resume PDF) are already web-ready, so
+// they're copied as they are.
 
 /** Target widths in pixels. Covers grid tiles up to full-screen images on high-density screens. */
 export const IMAGE_WIDTHS = [400, 800, 1200, 1920];
@@ -47,10 +48,14 @@ export interface VideoInfo {
   hash: string;
 }
 
+/** A file copied as it is (e.g. the resume PDF). */
+export type FileInfo = VideoInfo;
+
 /** Everything `npm run images` produced, keyed by content path ("media/<folder>/<file>"). */
 export interface MediaManifest {
   images: Record<string, ImageInfo>;
   videos: Record<string, VideoInfo>;
+  files: Record<string, FileInfo>;
 }
 
 /**

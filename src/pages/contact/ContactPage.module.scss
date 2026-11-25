@@ -1,0 +1,15 @@
+@use '../../styles/variables' as *;
+
+.link {
+  text-decoration: underline;
+  text-decoration-color: $color-text-muted;
+  text-underline-offset: 4px;
+
+  &:hover {
+    color: $color-text-muted;
+  }
+}
+
+.unavailable {
+  color: $color-text-muted;
+}

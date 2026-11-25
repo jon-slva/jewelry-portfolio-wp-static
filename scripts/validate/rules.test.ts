@@ -42,6 +42,7 @@ function snapshot(change: (content: ContentSnapshot) => void = () => {}): Conten
         logo: 'media/site/logo.png',
         copyright: '',
         social: [{ label: 'LinkedIn', url: 'https://www.linkedin.com/' }],
+        contactFormKey: 'test-key',
         resume: { pdf: 'media/site/resume.pdf', preview: 'media/site/resume.jpg' },
       },
     },
@@ -168,6 +169,14 @@ describe('validateContent', () => {
 
   it('reports redirects that clash with an item or point nowhere', () => {
     expect(errorsFor((c) => (c.redirects.data = [{ from: 'ring', to: 'gone' }]))).toHaveLength(2);
+  });
+
+  it('warns when the contact form has no key', () => {
+    const result = validateContent(
+      snapshot((c) => ((c.site.data as { contactFormKey: string }).contactFormKey = '')),
+    );
+    expect(result.errors).toEqual([]);
+    expect(result.warnings).toEqual([expect.stringContaining('contactFormKey is empty')]);
   });
 
   it('warns about unused media files without failing', () => {

@@ -1,7 +1,7 @@
 import categoriesData from './categories.json';
 import gridData from './grid.json';
 import tagsData from './tags.json';
-import type { ImageInfo, MediaManifest, VideoInfo } from './media.ts';
+import type { FileInfo, ImageInfo, MediaManifest, VideoInfo } from './media.ts';
 import type { Grid, Item, Term } from './schema.ts';
 
 // The site's single way into src/content/. Use it from route loaders, which
@@ -19,7 +19,11 @@ const manifestFiles = import.meta.glob<MediaManifest>('../generated/media.json',
   eager: true,
   import: 'default',
 });
-const manifest: MediaManifest = Object.values(manifestFiles)[0] ?? { images: {}, videos: {} };
+const manifest: MediaManifest = Object.values(manifestFiles)[0] ?? {
+  images: {},
+  videos: {},
+  files: {},
+};
 
 export const items: Item[] = Object.values(itemFiles);
 export const grid = gridData as Grid;
@@ -39,4 +43,9 @@ export function getImage(path: string): ImageInfo | undefined {
 /** Web address data for a video like "media/ring/turnaround.mp4". */
 export function getVideo(path: string): VideoInfo | undefined {
   return manifest.videos[path];
+}
+
+/** Web address data for another file, like the resume PDF. */
+export function getFile(path: string): FileInfo | undefined {
+  return manifest.files[path];
 }

@@ -12,7 +12,7 @@ import { generateImage } from './generate.ts';
 // Runs automatically before `npm run dev` and `npm run build`.
 //
 // - Images get WebP copies at several widths plus a JPEG fallback (generate.ts).
-//   Videos are already web-ready and are copied as they are.
+//   Videos and other files (the resume PDF) are copied as they are.
 // - Output goes to public/img/, and the list of it to src/generated/media.json.
 //   Both are git-ignored: they're rebuilt from the originals in src/content/media/.
 // - Unchanged files are skipped, so only the first run is slow.
@@ -28,7 +28,7 @@ const PIPELINE_VERSION = '1';
 const started = Date.now();
 const sources = collectMediaPaths(await readContent());
 const previous = await readManifest();
-const manifest: MediaManifest = { images: {}, videos: {} };
+const manifest: MediaManifest = { images: {}, videos: {}, files: {} };
 let built = 0;
 
 // A few images at a time: sharp already uses several CPU cores per image.
@@ -54,34 +54,44 @@ const workers = Array.from({ length: Math.min(4, os.availableParallelism()) }, a
 });
 await Promise.all(workers);
 
-for (const contentPath of sources.videos) {
-  const sourceFile = path.join(CONTENT_DIR, contentPath);
-  const hash = await fingerprint(sourceFile);
-  const url = `${outputBase(contentPath)}.mp4`;
-  if (previous.videos[contentPath]?.hash !== hash || !allExist([url])) {
-    await mkdir(path.dirname(path.join(PUBLIC_DIR, url)), { recursive: true });
-    await copyFile(sourceFile, path.join(PUBLIC_DIR, url));
-    built++;
-    console.log(`  copied ${contentPath}`);
+// Videos and other files are copied as they are, keeping their file name.
+for (const kind of ['videos', 'files'] as const) {
+  for (const contentPath of sources[kind]) {
+    const sourceFile = path.join(CONTENT_DIR, contentPath);
+    const hash = await fingerprint(sourceFile);
+    const url = contentPath.replace(/^media\//, 'img/');
+    if (previous[kind][contentPath]?.hash !== hash || !allExist([url])) {
+      await mkdir(path.dirname(path.join(PUBLIC_DIR, url)), { recursive: true });
+      await copyFile(sourceFile, path.join(PUBLIC_DIR, url));
+      built++;
+      console.log(`  copied ${contentPath}`);
+    }
+    manifest[kind][contentPath] = { url, hash };
   }
-  manifest.videos[contentPath] = { url, hash };
 }
 
 await writeJson(MANIFEST_FILE, {
   images: sortKeys(manifest.images),
   videos: sortKeys(manifest.videos),
+  files: sortKeys(manifest.files),
 });
 const removed = await removeUnusedFiles(manifest);
 
-const total = sources.images.length + sources.videos.length;
+const total = sources.images.length + sources.videos.length + sources.files.length;
 const seconds = ((Date.now() - started) / 1000).toFixed(1);
 console.log(
-  `Media: ${sources.images.length} images and ${sources.videos.length} videos in use, ` +
+  `Media: ${count(sources.images.length, 'image')}, ${count(sources.videos.length, 'video')} and ` +
+    `${count(sources.files.length, 'file')} in use, ` +
     `${built} built, ${total - built} unchanged` +
     `${removed ? `, ${removed} old files removed` : ''} (${seconds}s).`,
 );
 
 // ---- Helpers ----
+
+/** "1 file", "2 files" */
+function count(n: number, noun: string): string {
+  return `${n} ${noun}${n === 1 ? '' : 's'}`;
+}
 
 /** media/<folder>/<name>.<ext> -> img/<folder>/<name> */
 function outputBase(contentPath: string): string {
@@ -108,9 +118,9 @@ function sortKeys<T>(record: Record<string, T>): Record<string, T> {
 async function readManifest(): Promise<MediaManifest> {
   try {
     const data = JSON.parse(await readFile(MANIFEST_FILE, 'utf8')) as Partial<MediaManifest>;
-    return { images: data.images ?? {}, videos: data.videos ?? {} };
+    return { images: data.images ?? {}, videos: data.videos ?? {}, files: data.files ?? {} };
   } catch {
-    return { images: {}, videos: {} };
+    return { images: {}, videos: {}, files: {} };
   }
 }
 
@@ -122,6 +132,7 @@ async function removeUnusedFiles(current: MediaManifest): Promise<number> {
       ...info.webp.map((v) => v.url),
     ]),
     ...Object.values(current.videos).map((info) => info.url),
+    ...Object.values(current.files).map((info) => info.url),
   ]);
   const entries = await readdir(OUTPUT_DIR, { recursive: true, withFileTypes: true }).catch(
     () => [],

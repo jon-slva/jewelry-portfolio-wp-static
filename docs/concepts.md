@@ -464,3 +464,86 @@ browser and works out what to show, which for an unknown slug is the "Page not f
 
 The root also has a `meta` export now. Normal pages replace it with their own title, so it only
 shows on error pages ("Page not found – Jewelry by Jonathan Silva").
+
+### Masonry without a masonry library
+
+The masonry layout (`src/pages/item/masonry.ts`) packs images of different heights into columns,
+with "large" images two columns wide. Libraries usually do this by measuring every image in the
+browser and positioning it with JavaScript. Here it's worked out ahead of time, because every
+image's width and height is already known from the image build:
+
+- The images sit in a CSS grid whose rows are tiny (0.5% of the grid's width).
+- Each image spans as many rows as its height needs. For a square image in one of two columns,
+  that's about 100 rows.
+- `grid-auto-flow: dense` puts each image in the highest free spot that fits, which is exactly
+  what masonry does.
+- All the sizes are in **`cqw`** units, a percentage of a *container's* width. The grid's wrapper
+  is marked `container-type: inline-size`, so `1cqw` is 1% of its width. The whole layout scales
+  with the screen, and the numbers never need recalculating.
+
+So the layout is already correct in the pre-rendered HTML, before any JavaScript runs, and
+nothing shifts as images load.
+
+### The `<dialog>` element for the lightbox
+
+A lightbox is a modal: while it's open, nothing behind it should be clickable or reachable with
+Tab, Escape should close it, and focus should go back where it was afterwards. Doing that by hand
+takes a lot of code (focus traps, `aria-modal`, key handlers). The browser's own `<dialog>` element,
+opened with `showModal()`, does all of it:
+
+- It's shown in the browser's **top layer**, above everything else, with a `::backdrop` behind it.
+- The rest of the page becomes **inert**: it can't be clicked, tabbed to or read by screen readers.
+- Escape closes it and fires a `close` event, which the component listens to.
+- When it closes, focus returns to the element that opened it (here, the image button).
+
+`src/components/Lightbox/` adds the rest: arrow keys, swipe, and closing on a backdrop click (a
+click on the dark area lands on the `<dialog>` element itself rather than on its content).
+
+### `:has()`: CSS that reacts to what's inside
+
+To stop the page scrolling behind the lightbox, `global.scss` has:
+
+```css
+html:has(dialog[open]) { overflow: hidden; }
+```
+
+`:has()` selects an element based on what it contains: "the `<html>` element, if it has an open
+dialog somewhere inside". The browser applies and removes the rule by itself as the dialog opens
+and closes, with no JavaScript to forget to undo.
+
+### Click-to-play embeds
+
+An embedded YouTube player downloads close to 1 MB of scripts and sets tracking cookies as soon as
+the page loads, even if nobody presses play. `src/components/YouTubeEmbed/` shows just the video's
+thumbnail (a plain image from YouTube's image server) and a play button. Only on click does it swap
+in the real player, from `youtube-nocookie.com`, YouTube's privacy-enhanced domain, with
+`autoplay=1` so one click is enough.
+
+### A form that works with or without JavaScript
+
+The contact form (`src/pages/contact/ContactForm.tsx`) is a plain HTML form that posts straight to
+Web3Forms, a service that emails each message to you. If JavaScript hasn't loaded (or fails), the
+browser submits it the old-fashioned way and Web3Forms shows its own "sent" page. When JavaScript
+is running, the form catches the submit, sends the same data with `fetch`, and shows the result in
+place. This is called **progressive enhancement**: the basic version works everywhere, and the
+nicer version is layered on top.
+
+Some other details:
+
+- **Spam trap ("honeypot")**: a checkbox hidden from people but still visible to bots. Bots tend to
+  fill in every field, so a ticked box means the message is dropped.
+- **`role="status"`**: the line that says "sent" or explains an error is announced by screen
+  readers when it changes.
+- **The access key is public on purpose.** It's in the page's HTML, and it can only send messages
+  to the one email address it was created for, so publishing it is safe. The real address is never
+  in the page.
+- **Testing without a network**: `sendMessage.ts` takes the `fetch` function as a parameter, so
+  the tests pass in a fake one and check what would be sent.
+
+### Icons as inline SVG
+
+The LinkedIn and Behance icons are SVG paths written straight into the HTML
+(`src/components/SiteLayout/socialIcons.ts`), not an icon font like the old site used. They need no
+extra download, stay sharp at any size, and take their color from the text (`fill="currentColor"`),
+so the hover color change is plain CSS. The link gets an `aria-label` ("LinkedIn"), and the SVG is
+`aria-hidden`, since a screen reader can't read a drawing.

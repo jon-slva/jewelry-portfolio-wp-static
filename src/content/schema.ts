@@ -140,6 +140,12 @@ export const siteSchema = z.strictObject({
   logo: mediaPathSchema,
   copyright: z.string(),
   social: z.array(z.strictObject({ label: z.string().min(1), url: z.url() })),
+  /**
+   * Web3Forms access key for the contact form (free at web3forms.com). Leave
+   * empty to switch the form off. It's safe to publish: it can only send
+   * messages to the email address it was created for.
+   */
+  contactFormKey: z.string(),
   resume: z.strictObject({
     pdf: mediaPathSchema,
     /** Image of the resume's first page, shown on the Resume page. */

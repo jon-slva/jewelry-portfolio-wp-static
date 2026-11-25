@@ -132,7 +132,13 @@ export function validateContent(content: ContentSnapshot): ValidationResult {
       errors.push(`redirects.json: "${from}" points to "${to}", which has no item file`);
   }
 
-  // ---- Warnings: files nothing uses ----
+  // ---- Warnings ----
+  if (site && !site.contactFormKey) {
+    warnings.push(
+      'site.json → contactFormKey is empty, so the contact form is switched off (get a key at web3forms.com)',
+    );
+  }
+  // Media files nothing uses.
   for (const file of content.mediaFiles) {
     if (!referenced.has(file) && !file.startsWith('media/site/')) {
       warnings.push(`src/content/${file} isn't used by any item`);

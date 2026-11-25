@@ -181,7 +181,7 @@ Not covered by unit tests: visual components, snapshots, and end-to-end browser 
 - [x] Item pages pre-rendered from content, data loaded at build time (temporary single-column view until 1d)
 
 ### 1d. Public pages
-- [ ] Header / nav / footer matching the Anders look
+- [x] Header / nav / footer matching the Anders look
 - [x] Front-page grid:
   - order and settings from `grid.json`
   - overlay hover
@@ -189,13 +189,16 @@ Not covered by unit tests: visual components, snapshots, and end-to-end browser 
 - [x] Filters:
   - category filter bar and tag filtering, driven by data
   - reflected in the URL so filtered views can be linked (each filter is its own pre-rendered page)
-- [ ] Item page:
+- [x] Item page:
   - text block, Software / Client, categories, tags
   - images and videos in the item's chosen layout (masonry / stacked / gallery)
   - lightbox
   - click-to-play YouTube embeds
 - [x] `/portfolio-category/<slug>/` and `/portfolio-tag/<slug>/` pages (filtered grid), so old links keep working. Item pages link their categories and tags to them.
-- [ ] Resume (PDF link + preview image), Contact (Web3Forms), 404
+- [x] Resume: preview rendered from the 2023 PDF (opens the PDF), plus open / download links. The PDF is copied by the media build.
+- [x] Contact: Web3Forms form (name, email, message; spam trap; works without JavaScript too) + LinkedIn link. Switched off until `contactFormKey` is set in `site.json`. No email or phone on the page.
+- [x] 404 page
+- [x] LinkedIn / Behance icons in the sidebar; copyright footer below 1024px, where the sidebar copyright is hidden in the menu
 - [ ] Responsive + accessible: keyboard filters, focus states, alt text, reduced-motion
 - [ ] ✅ Check-in 3: click through the whole site locally
 

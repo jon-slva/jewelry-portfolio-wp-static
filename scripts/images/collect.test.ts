@@ -55,6 +55,7 @@ describe('collectMediaPaths', () => {
     expect(collectMediaPaths(content)).toEqual({
       images: ['media/ring/a.jpg', 'media/ring/cover.jpg', 'media/ring/turn-poster.jpg'],
       videos: ['media/ring/tile.mp4', 'media/ring/turn.mp4'],
+      files: [],
     });
   });
 });

@@ -92,14 +92,26 @@
 
 .social {
   display: flex;
+  align-items: center;
   gap: 18px;
   margin-top: 24px;
   font-weight: $font-weight-bold;
   font-size: $font-size-small;
 
+  a {
+    display: block;
+    transition: color $transition-fast;
+  }
+
   a:hover {
     color: $color-text-muted;
   }
+}
+
+.socialIcon {
+  display: block;
+  height: 18px;
+  width: auto;
 }
 
 .copyright {
@@ -113,6 +125,21 @@
 
 .content {
   padding: $page-padding $page-padding-mobile;
+}
+
+// Copyright at the bottom of the page, only where the sidebar's is hidden.
+.footer {
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  color: $color-text-muted;
+  font-size: $font-size-small;
+  line-height: 2;
+  text-align: center;
+
+  p {
+    margin: 0;
+  }
 }
 
 .visuallyHidden {
@@ -166,5 +193,9 @@
   .content {
     margin-left: $sidebar-width;
     padding: $page-padding;
+  }
+
+  .footer {
+    display: none;
   }
 }
