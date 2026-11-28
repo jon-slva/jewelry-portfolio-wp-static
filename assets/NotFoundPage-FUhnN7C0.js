@@ -1,0 +1,1 @@
+import{o as e,t}from"./jsx-runtime-Ci41hSbm.js";import{t as n}from"./NotFound-DCzSZ872.js";import{t as r}from"./site-BiAqTK6h.js";var i=t();function a(){return[{title:`Page not found – ${r.title}`},{name:`robots`,content:`noindex`}]}var o=e(function(){return(0,i.jsx)(n,{})});export{o as default,a as meta};
