@@ -1,0 +1,51 @@
+@use '../../styles/variables' as *;
+
+// The text comes first in the HTML, so phones (and screen readers) get the
+// title and description before the images. Wider screens move it:
+// - masonry / stacked ("beside"): text in a column to the right of the
+//   images, staying in view while the images scroll (sticky)
+// - gallery ("below"): images across the full width, text underneath
+//   (as on the original site)
+
+.beside,
+.below {
+  display: grid;
+  gap: 30px;
+  max-width: 1500px;
+}
+
+.media {
+  min-width: 0;
+}
+
+@media (min-width: 1200px) {
+  .beside {
+    grid-template-columns: minmax(0, 1fr) 300px;
+    grid-template-areas: 'media details';
+
+    .details {
+      grid-area: details;
+      position: sticky;
+      top: $page-padding;
+      align-self: start;
+    }
+
+    .media {
+      grid-area: media;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .below {
+    grid-template-areas: 'media' 'details';
+
+    .details {
+      grid-area: details;
+    }
+
+    .media {
+      grid-area: media;
+    }
+  }
+}

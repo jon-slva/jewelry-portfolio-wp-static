@@ -1,0 +1,62 @@
+{
+  "title": "Emerald & Pear Diamond Cluster Ring",
+  "slug": "emerald-pear-diamond-cluster-ring",
+  "subtitle": "",
+  "date": "2023-07-24",
+  "draft": false,
+  "featured": false,
+  "categories": [
+    "fine"
+  ],
+  "tags": [],
+  "description": "",
+  "software": [
+    "Rhinoceros 3D",
+    "Matrix",
+    "Vray"
+  ],
+  "client": "Private client",
+  "cover": "media/emerald-pear-diamond-cluster-ring/cluster-ring-thumb-small.jpg",
+  "layout": {
+    "type": "masonry",
+    "columns": 3
+  },
+  "media": [
+    {
+      "type": "image",
+      "file": "media/emerald-pear-diamond-cluster-ring/cluster-ring-persp.png",
+      "alt": "Emerald & Pear Diamond Cluster Ring – view 1",
+      "size": "large"
+    },
+    {
+      "type": "image",
+      "file": "media/emerald-pear-diamond-cluster-ring/cluster-ring-thumb.png",
+      "alt": "Emerald & Pear Diamond Cluster Ring – view 2",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/emerald-pear-diamond-cluster-ring/cluster-ring-top.png",
+      "alt": "Emerald & Pear Diamond Cluster Ring – view 3",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/emerald-pear-diamond-cluster-ring/cluster-ring-front.png",
+      "alt": "Emerald & Pear Diamond Cluster Ring – view 4",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/emerald-pear-diamond-cluster-ring/cluster-ring-showcase.png",
+      "alt": "Emerald & Pear Diamond Cluster Ring – view 5",
+      "size": "large"
+    },
+    {
+      "type": "image",
+      "file": "media/emerald-pear-diamond-cluster-ring/cluster-ring-side.png",
+      "alt": "Emerald & Pear Diamond Cluster Ring – view 6",
+      "size": "normal"
+    }
+  ]
+}

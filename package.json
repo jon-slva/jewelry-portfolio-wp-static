@@ -1,17 +1,61 @@
 {
-	"name": "simply-static-1-1715834737",
-	"homepage": "http://jon-slva.github.io/jewelry-portfolio/",
-	"version": "1.0.0",
-	"description": "",
-	"main": "index.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"deploy": "gh-pages -d ."
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"devDependencies": {
-		"gh-pages": "^6.1.1"
-	}
+  "name": "jewelry-portfolio",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Jewelry portfolio of Jonathan Silva - static React site with a local content admin.",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "predev": "npm run images",
+    "dev": "react-router dev",
+    "prebuild": "npm run validate && npm run images",
+    "build": "react-router build",
+    "postbuild": "node scripts/postbuild/index.ts",
+    "build:preview": "BASE_PATH=/jewelry-portfolio-wp-static/ SITE_ORIGIN=https://jon-slva.github.io npm run build",
+    "preview": "node scripts/preview/index.ts",
+    "preview:gh": "BASE_PATH=/jewelry-portfolio-wp-static/ node scripts/preview/index.ts",
+    "predeploy": "npm test",
+    "deploy": "npm run build:preview && gh-pages --dist build/client --dotfiles --message 'Deploy preview'",
+    "validate": "node scripts/validate/index.ts",
+    "images": "node scripts/images/index.ts",
+    "gif-to-video": "node scripts/gif-to-video/index.ts",
+    "import:wp": "node scripts/import-wp/index.ts",
+    "typecheck": "react-router typegen && tsc --noEmit",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@react-router/node": "^8.5.2",
+    "isbot": "^5.2.3",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-router": "^8.5.2",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@react-router/dev": "^8.5.2",
+    "@types/node": "^24.19.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "eslint": "^10.15.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "fast-xml-parser": "^5.12.1",
+    "gh-pages": "^6.3.0",
+    "globals": "^17.14.0",
+    "node-html-parser": "^9.0.7",
+    "prettier": "^3.10.1",
+    "sass": "^1.108.2",
+    "sharp": "^0.35.5",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.74.0",
+    "vite": "^8.3.8",
+    "vitest": "^5.1.1"
+  }
 }

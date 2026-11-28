@@ -1,0 +1,70 @@
+{
+  "title": "Fractured Skull Necklace",
+  "slug": "fractured-skull-necklace",
+  "subtitle": "Intenebris",
+  "date": "2023-06-13",
+  "draft": false,
+  "featured": false,
+  "categories": [
+    "sculpture"
+  ],
+  "tags": [
+    "fashion",
+    "intenebris",
+    "modern"
+  ],
+  "description": "A necklace depicting a broken skull. I was doing an anatomical study originally, and ended up liking how it looked for a jewelry piece. So I modified and stylized it, and released it.",
+  "software": [
+    "Zbrush"
+  ],
+  "client": "Intenebris",
+  "cover": "media/fractured-skull-necklace/fractured-skull-necklace-left-1.jpg",
+  "layout": {
+    "type": "masonry",
+    "columns": 3
+  },
+  "media": [
+    {
+      "type": "image",
+      "file": "media/fractured-skull-necklace/fractured-skull-necklace-front-1.jpg",
+      "alt": "Fractured Skull Necklace – view 1",
+      "size": "large"
+    },
+    {
+      "type": "image",
+      "file": "media/fractured-skull-necklace/fractured-skull-necklace-left-1.jpg",
+      "alt": "Fractured Skull Necklace – view 2",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/fractured-skull-necklace/fractured-skull-necklace-right-1.jpg",
+      "alt": "Fractured Skull Necklace – view 3",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/fractured-skull-necklace/merge_view_1406x1920-1.png",
+      "alt": "Fractured Skull Necklace – view 4",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/fractured-skull-necklace/fractured-skull-necklace-3.jpg",
+      "alt": "Fractured Skull Necklace – view 5",
+      "size": "large"
+    },
+    {
+      "type": "image",
+      "file": "media/fractured-skull-necklace/fractured-skull-necklace-4.jpg",
+      "alt": "Fractured Skull Necklace – view 6",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/fractured-skull-necklace/fractured-skull-necklace-11.jpg",
+      "alt": "Fractured Skull Necklace – view 7",
+      "size": "normal"
+    }
+  ]
+}

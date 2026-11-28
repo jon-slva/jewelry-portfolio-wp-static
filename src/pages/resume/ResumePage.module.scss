@@ -1,0 +1,28 @@
+@use '../../styles/variables' as *;
+
+.preview {
+  display: block;
+  max-width: 560px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
+  transition: box-shadow $transition-fast;
+
+  &:hover {
+    box-shadow: 0 0 0 1px $color-text-muted;
+  }
+}
+
+.links {
+  display: flex;
+  gap: 28px;
+  margin: 20px 0 0;
+
+  a {
+    text-decoration: underline;
+    text-decoration-color: $color-text-muted;
+    text-underline-offset: 4px;
+
+    &:hover {
+      color: $color-text-muted;
+    }
+  }
+}

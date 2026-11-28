@@ -1,0 +1,53 @@
+{
+  "title": "Reza Spirale Ring",
+  "slug": "reza-spirale-ring",
+  "subtitle": "",
+  "date": "2023-07-09",
+  "draft": false,
+  "featured": false,
+  "categories": [
+    "fine"
+  ],
+  "tags": [],
+  "description": "",
+  "software": [
+    "Rhinoceros 3D",
+    "Matrix",
+    "Vray",
+    "Grasshopper"
+  ],
+  "client": "Reza International Inc.",
+  "cover": "media/reza-spirale-ring/reza-spirale-ring-turnaround-1-poster.jpg",
+  "coverVideo": "media/reza-spirale-ring/reza-spirale-ring-turnaround-1.mp4",
+  "layout": {
+    "type": "masonry",
+    "columns": 3
+  },
+  "media": [
+    {
+      "type": "image",
+      "file": "media/reza-spirale-ring/spirale-ring-half-turn.png",
+      "alt": "Reza Spirale Ring – view 1",
+      "size": "large"
+    },
+    {
+      "type": "image",
+      "file": "media/reza-spirale-ring/spirale-ring-4-view.png",
+      "alt": "Reza Spirale Ring – view 2",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/reza-spirale-ring/spirale-ring-fancy-turn-2.png",
+      "alt": "Reza Spirale Ring – view 3",
+      "size": "normal"
+    },
+    {
+      "type": "video",
+      "file": "media/reza-spirale-ring/reza-spirale-ring-turnaround-4.mp4",
+      "poster": "media/reza-spirale-ring/reza-spirale-ring-turnaround-4-poster.jpg",
+      "alt": "Reza Spirale Ring – turnaround video",
+      "size": "large"
+    }
+  ]
+}

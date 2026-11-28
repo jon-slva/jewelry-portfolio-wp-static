@@ -1,0 +1,61 @@
+{
+  "title": "Emerald Lip Ring",
+  "slug": "emerald-lip-ring",
+  "subtitle": "",
+  "date": "2023-06-16",
+  "draft": false,
+  "featured": false,
+  "categories": [
+    "fine"
+  ],
+  "tags": [],
+  "description": "",
+  "software": [
+    "Rhinoceros 3D",
+    "Matrix"
+  ],
+  "client": "Private client",
+  "cover": "media/emerald-lip-ring/emerald-lip-ring-thumb-small.jpg",
+  "layout": {
+    "type": "masonry",
+    "columns": 3
+  },
+  "media": [
+    {
+      "type": "image",
+      "file": "media/emerald-lip-ring/emerald-lip-ring-persp.png",
+      "alt": "Emerald Lip Ring – view 1",
+      "size": "large"
+    },
+    {
+      "type": "image",
+      "file": "media/emerald-lip-ring/emerald-lip-ring-thumb.png",
+      "alt": "Emerald Lip Ring – view 2",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/emerald-lip-ring/emerald-lip-ring-side.png",
+      "alt": "Emerald Lip Ring – view 3",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/emerald-lip-ring/emerald-lip-ring-front.png",
+      "alt": "Emerald Lip Ring – view 4",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/emerald-lip-ring/emerald-lip-ring-showcase.png",
+      "alt": "Emerald Lip Ring – view 5",
+      "size": "large"
+    },
+    {
+      "type": "image",
+      "file": "media/emerald-lip-ring/emerald-lip-ring-top.png",
+      "alt": "Emerald Lip Ring – view 6",
+      "size": "normal"
+    }
+  ]
+}

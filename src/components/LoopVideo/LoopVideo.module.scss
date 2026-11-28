@@ -1,0 +1,6 @@
+// Scales like an image: full width of its container, height from its shape.
+.video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}

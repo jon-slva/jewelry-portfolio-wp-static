@@ -1,0 +1,59 @@
+{
+  "title": "Floating Octahedron Ring",
+  "slug": "floating-octahedron-ring",
+  "subtitle": "Intenebris",
+  "date": "2023-06-17",
+  "draft": false,
+  "featured": false,
+  "categories": [
+    "fashion-jewelry"
+  ],
+  "tags": [
+    "fashion",
+    "intenebris",
+    "modern"
+  ],
+  "description": "This is a silver ring set with a pentagonal dipyramid (mirrored 4 sided pyramid) of custom cut quartz, or amethyst. It is for my brand Intenebris, which I used as an outlet to express my love for a dark as well as ultra-modern aesthetic. I also took these photos and videos.",
+  "software": [
+    "Rhinoceros 3D",
+    "Matrix"
+  ],
+  "client": "Intenebris",
+  "cover": "media/floating-octahedron-ring/z-axis-intenebris-thumb.jpg",
+  "layout": {
+    "type": "masonry",
+    "columns": 3
+  },
+  "media": [
+    {
+      "type": "image",
+      "file": "media/floating-octahedron-ring/intenebris-z-axis-amethyst-matrix-unisex-ring-sterling-silver.jpg",
+      "alt": "Floating Octahedron Ring – view 1",
+      "size": "large"
+    },
+    {
+      "type": "image",
+      "file": "media/floating-octahedron-ring/intenebris-z-axis-light-amethyst-matrix-unisex-ring-sterling-silver.jpg",
+      "alt": "Floating Octahedron Ring – view 2",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/floating-octahedron-ring/intenebris-z-axis-quartz-matrix-unisex-ring-sterling-silver.jpg",
+      "alt": "Floating Octahedron Ring – view 3",
+      "size": "normal"
+    },
+    {
+      "type": "youtube",
+      "id": "r0O95MqK2jQ",
+      "title": "Floating Octahedron Ring – video 1",
+      "size": "normal"
+    },
+    {
+      "type": "youtube",
+      "id": "n_LsoHPn--8",
+      "title": "Floating Octahedron Ring – video 2",
+      "size": "normal"
+    }
+  ]
+}

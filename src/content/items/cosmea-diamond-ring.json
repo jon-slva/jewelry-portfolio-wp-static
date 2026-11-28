@@ -1,0 +1,87 @@
+{
+  "title": "Cosmea Diamond Ring",
+  "slug": "cosmea-diamond-ring",
+  "subtitle": "",
+  "date": "2023-06-19",
+  "draft": false,
+  "featured": false,
+  "categories": [
+    "fine"
+  ],
+  "tags": [],
+  "description": "",
+  "software": [
+    "Rhinoceros 3D",
+    "Matrix",
+    "Vray",
+    "Keyshot"
+  ],
+  "client": "Cosmea",
+  "cover": "media/cosmea-diamond-ring/thumb-1-ring.jpg",
+  "layout": {
+    "type": "masonry",
+    "columns": 3
+  },
+  "media": [
+    {
+      "type": "image",
+      "file": "media/cosmea-diamond-ring/thumb.jpg",
+      "alt": "Cosmea Diamond Ring – view 1",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/cosmea-diamond-ring/1-studio.jpg",
+      "alt": "Cosmea Diamond Ring – view 2",
+      "size": "large"
+    },
+    {
+      "type": "image",
+      "file": "media/cosmea-diamond-ring/1-4.jpg",
+      "alt": "Cosmea Diamond Ring – view 3",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/cosmea-diamond-ring/3-3.jpg",
+      "alt": "Cosmea Diamond Ring – view 4",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/cosmea-diamond-ring/2-studio.jpg",
+      "alt": "Cosmea Diamond Ring – view 5",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/cosmea-diamond-ring/2-2.jpg",
+      "alt": "Cosmea Diamond Ring – view 6",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/cosmea-diamond-ring/3-studio.jpg",
+      "alt": "Cosmea Diamond Ring – view 7",
+      "size": "large"
+    },
+    {
+      "type": "image",
+      "file": "media/cosmea-diamond-ring/4-studio.jpg",
+      "alt": "Cosmea Diamond Ring – view 8",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/cosmea-diamond-ring/5-studio.jpg",
+      "alt": "Cosmea Diamond Ring – view 9",
+      "size": "normal"
+    },
+    {
+      "type": "youtube",
+      "id": "Ks9Rjn3gFC8",
+      "title": "Cosmea Diamond Ring – video",
+      "size": "normal"
+    }
+  ]
+}

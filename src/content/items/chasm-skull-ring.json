@@ -1,0 +1,82 @@
+{
+  "title": "Chasm Skull Ring",
+  "slug": "chasm-skull-ring",
+  "subtitle": "Intenebris",
+  "date": "2023-06-19",
+  "draft": false,
+  "featured": false,
+  "categories": [
+    "sculpture"
+  ],
+  "tags": [
+    "intenebris"
+  ],
+  "description": "This is a ring I sculpted for my brand back in 2016. It was inspired by H.R. Giger - one of my favorite bio-mechanical dark artists.",
+  "software": [
+    "Zbrush",
+    "Rhinoceros 3D",
+    "Matrix"
+  ],
+  "client": "Intenebris",
+  "cover": "media/chasm-skull-ring/chasm-skull-ring-quarter-right.jpg",
+  "layout": {
+    "type": "masonry",
+    "columns": 3
+  },
+  "media": [
+    {
+      "type": "image",
+      "file": "media/chasm-skull-ring/chasm-skull-ring-front-1.jpg",
+      "alt": "Chasm Skull Ring – view 1",
+      "size": "large"
+    },
+    {
+      "type": "image",
+      "file": "media/chasm-skull-ring/chasm-skull-ring-quarter-left.jpg",
+      "alt": "Chasm Skull Ring – view 2",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/chasm-skull-ring/chasm-skull-ring-quarter-right.jpg",
+      "alt": "Chasm Skull Ring – view 3",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/chasm-skull-ring/merge_view_1406x1920.png",
+      "alt": "Chasm Skull Ring – view 4",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/chasm-skull-ring/ring-skull-small-closeup-web.jpg",
+      "alt": "Chasm Skull Ring – view 5",
+      "size": "large"
+    },
+    {
+      "type": "image",
+      "file": "media/chasm-skull-ring/chasm-skull-ring-12.jpg",
+      "alt": "Chasm Skull Ring – view 6",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/chasm-skull-ring/chasm-skull-ring-10.jpg",
+      "alt": "Chasm Skull Ring – view 7",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/chasm-skull-ring/chasm-skull-ring-1.jpg",
+      "alt": "Chasm Skull Ring – view 8",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/chasm-skull-ring/chasm-skull-ring-3.jpg",
+      "alt": "Chasm Skull Ring – view 9",
+      "size": "normal"
+    }
+  ]
+}

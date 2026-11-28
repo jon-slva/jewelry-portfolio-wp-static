@@ -1,0 +1,31 @@
+// Design tokens for the whole site. Change a value here and every page follows.
+// Values are taken from the original Anders theme (see docs/reference/).
+
+// Colors
+$color-bg: #000;
+$color-text: #fff;
+$color-text-muted: #8c8c8c;
+$color-accent: #d9d61f; // logo yellow
+$color-divider: rgba(255, 255, 255, 0.85);
+$color-highlight: #b9b9b9; // grey bar behind the active nav / filter item
+
+// Typography
+$font-body: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+$font-size-base: 15px;
+$font-size-small: 13px;
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-bold: 600;
+
+// Layout
+$sidebar-width: 363px;
+$mobile-header-height: 70px;
+$page-padding: 30px;
+$page-padding-mobile: 16px;
+
+// Breakpoints (min-width). Below $bp-desktop the sidebar becomes a top bar.
+$bp-tablet: 768px;
+$bp-desktop: 1024px;
+
+// Motion
+$transition-fast: 0.2s ease;

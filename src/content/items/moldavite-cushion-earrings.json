@@ -1,0 +1,63 @@
+{
+  "title": "Moldavite Cushion Earrings",
+  "slug": "moldavite-cushion-earrings",
+  "subtitle": "",
+  "date": "2023-07-24",
+  "draft": false,
+  "featured": false,
+  "categories": [
+    "fine"
+  ],
+  "tags": [],
+  "description": "",
+  "software": [
+    "Zbrush",
+    "Rhinoceros 3D",
+    "Matrix",
+    "Vray"
+  ],
+  "client": "Private client",
+  "cover": "media/moldavite-cushion-earrings/moldavite-cusion-earrings-thumb.jpg",
+  "layout": {
+    "type": "masonry",
+    "columns": 3
+  },
+  "media": [
+    {
+      "type": "image",
+      "file": "media/moldavite-cushion-earrings/moldavite-cusion-earrings-4.png",
+      "alt": "Moldavite Cushion Earrings – view 1",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/moldavite-cushion-earrings/moldavite-cusion-earrings-2.png",
+      "alt": "Moldavite Cushion Earrings – view 2",
+      "size": "large"
+    },
+    {
+      "type": "image",
+      "file": "media/moldavite-cushion-earrings/moldavite-cusion-earrings-thumb.jpg",
+      "alt": "Moldavite Cushion Earrings – view 3",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/moldavite-cushion-earrings/moldavite-cusion-earrings-3.png",
+      "alt": "Moldavite Cushion Earrings – view 4",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/moldavite-cushion-earrings/moldavite-cusion-earrings-thumb.png",
+      "alt": "Moldavite Cushion Earrings – view 5",
+      "size": "large"
+    },
+    {
+      "type": "image",
+      "file": "media/moldavite-cushion-earrings/moldavite-cusion-earrings-1.png",
+      "alt": "Moldavite Cushion Earrings – view 6",
+      "size": "normal"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+@use '../../styles/variables' as *;
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 40px;
+  margin: 40px 0 50px;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+
+  @media (max-width: 680px) {
+    gap: 8px 28px;
+    margin: 24px 0 32px;
+  }
+}
+
+.filter,
+.active {
+  display: inline-block;
+  padding: 2px 3px;
+  font-weight: $font-weight-regular;
+  line-height: 1.4;
+  transition: color $transition-fast;
+}
+
+.filter {
+  color: $color-text-muted;
+
+  &:hover {
+    color: $color-text;
+  }
+}
+
+// Same grey bar behind the lower half as the active menu item.
+.active {
+  color: $color-text;
+  background: linear-gradient($color-highlight, $color-highlight) no-repeat 0 75% / 100% 40%;
+}

@@ -1,0 +1,49 @@
+{
+  "title": "Ribbon Engagement Ring",
+  "slug": "ribbon-engagement-ring",
+  "subtitle": "",
+  "date": "2023-06-16",
+  "draft": false,
+  "featured": false,
+  "categories": [
+    "fine"
+  ],
+  "tags": [],
+  "description": "",
+  "software": [
+    "Zbrush",
+    "Rhinoceros 3D",
+    "Matrix"
+  ],
+  "client": "Private client",
+  "cover": "media/ribbon-engagement-ring/vray-engagement-ring-v4-thumb.jpg",
+  "layout": {
+    "type": "stacked"
+  },
+  "media": [
+    {
+      "type": "image",
+      "file": "media/ribbon-engagement-ring/vray-engagement-ring-v4-e1504504706272.jpg",
+      "alt": "Ribbon Engagement Ring – view 1",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/ribbon-engagement-ring/engagement-ring-v6-1-e1504504819105.jpg",
+      "alt": "Ribbon Engagement Ring – view 2",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/ribbon-engagement-ring/vray-engagement-ring-v3-e1504504800590.jpg",
+      "alt": "Ribbon Engagement Ring – view 3",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/ribbon-engagement-ring/top-e1504511535928.jpg",
+      "alt": "Ribbon Engagement Ring – view 4",
+      "size": "normal"
+    }
+  ]
+}

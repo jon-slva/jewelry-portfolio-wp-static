@@ -1,0 +1,93 @@
+@use '../../styles/variables' as *;
+
+// Each cell sets its own size; whatever is inside (image button, video,
+// YouTube player) fills it.
+.masonryCell,
+.galleryCell,
+.stackedCell {
+  min-width: 0;
+
+  > * {
+    display: block;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  img,
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  picture {
+    display: block;
+    height: 100%;
+  }
+}
+
+.imageButton {
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+
+// ---- Masonry ----
+// Spans come from masonry.ts. Sizes are in cqw (% of the container's width),
+// which is why the grid sits inside a size container.
+
+.masonryContainer {
+  container-type: inline-size;
+}
+
+.masonry {
+  @media (min-width: 681px) {
+    display: grid;
+    grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
+    grid-auto-rows: 0.5cqw; // MASONRY_ROW_UNIT
+    grid-auto-flow: row dense;
+    column-gap: 1.1cqw; // MASONRY_GAP
+  }
+}
+
+.masonryCell {
+  aspect-ratio: var(--aspect);
+  margin-bottom: 10px;
+
+  @media (min-width: 681px) {
+    grid-column: span var(--col-span);
+    grid-row: span var(--row-span);
+    aspect-ratio: auto;
+    margin-bottom: 0;
+    padding-bottom: 1.1cqw; // MASONRY_GAP, the space below each image
+  }
+}
+
+// ---- Gallery ----
+
+.gallery {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 10px;
+
+  @media (min-width: 681px) {
+    grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
+  }
+}
+
+.galleryCell {
+  aspect-ratio: 4 / 3;
+}
+
+// ---- Stacked ----
+
+.stacked {
+  display: grid;
+  gap: 10px;
+}
+
+.stackedCell {
+  aspect-ratio: var(--aspect);
+}

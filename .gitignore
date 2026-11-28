@@ -20,3 +20,11 @@ _source/
 !.vscode/extensions.json
 .idea/
 *.log
+
+# React Router generated types and build output
+.react-router/
+build/
+
+# Generated web images and their list (rebuilt by npm run images)
+public/img/
+src/generated/

@@ -1,0 +1,22 @@
+[
+  {
+    "slug": "art",
+    "name": "Art"
+  },
+  {
+    "slug": "ent-jewelry",
+    "name": "Entertainment Industry"
+  },
+  {
+    "slug": "fashion-jewelry",
+    "name": "Fashion"
+  },
+  {
+    "slug": "fine",
+    "name": "Fine"
+  },
+  {
+    "slug": "sculpture",
+    "name": "Sculpture"
+  }
+]

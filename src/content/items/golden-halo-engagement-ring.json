@@ -1,0 +1,54 @@
+{
+  "title": "Golden Halo Engagement Ring",
+  "slug": "golden-halo-engagement-ring",
+  "subtitle": "",
+  "date": "2023-06-18",
+  "draft": false,
+  "featured": false,
+  "categories": [
+    "fine"
+  ],
+  "tags": [],
+  "description": "",
+  "software": [
+    "Rhinoceros 3D",
+    "Matrix"
+  ],
+  "client": "Private client",
+  "cover": "media/golden-halo-engagement-ring/3-thumb.jpg",
+  "layout": {
+    "type": "stacked"
+  },
+  "media": [
+    {
+      "type": "image",
+      "file": "media/golden-halo-engagement-ring/1-2.jpg",
+      "alt": "Golden Halo Engagement Ring – view 1",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/golden-halo-engagement-ring/2-v2.jpg",
+      "alt": "Golden Halo Engagement Ring – view 2",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/golden-halo-engagement-ring/3-1.jpg",
+      "alt": "Golden Halo Engagement Ring – view 3",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/golden-halo-engagement-ring/4.jpg",
+      "alt": "Golden Halo Engagement Ring – view 4",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/golden-halo-engagement-ring/5.jpg",
+      "alt": "Golden Halo Engagement Ring – view 5",
+      "size": "normal"
+    }
+  ]
+}

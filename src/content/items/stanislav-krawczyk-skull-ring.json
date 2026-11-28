@@ -1,0 +1,58 @@
+{
+  "title": "Stanislav Krawczyk Skull Ring",
+  "slug": "stanislav-krawczyk-skull-ring",
+  "subtitle": "Intenebris X Stanislav Krawczyk",
+  "date": "2023-06-18",
+  "draft": false,
+  "featured": false,
+  "categories": [
+    "art",
+    "sculpture"
+  ],
+  "tags": [
+    "artist-collaboration",
+    "intenebris",
+    "stanislav-krawczyk"
+  ],
+  "description": "This is another fun and highly experimental artist collaborations. Stan is a well known Ukrainian dark artist with cerebral palsy. His condition left him entirely paralyzed on one side of his body since an early age, as well as mostly blind. Despite that, he uses what mobility and vision he has to create deeply expressive scratchy pen drawings depicting what his life experience - each one with the same title - \"Pain\". The 3D model is not shown here, because honestly, it's ugly. This was purely experimental, and was always intended to be hand finished and seen exactly the way it looks in these photos.",
+  "software": [
+    "Zbrush"
+  ],
+  "client": "Intenebris, Stanislav Krawczyk",
+  "cover": "media/stanislav-krawczyk-skull-ring/stan-darkart-ring-thumb.jpg",
+  "layout": {
+    "type": "stacked"
+  },
+  "media": [
+    {
+      "type": "image",
+      "file": "media/stanislav-krawczyk-skull-ring/monster-web.jpg",
+      "alt": "Stanislav Krawczyk Skull Ring – view 1",
+      "size": "large"
+    },
+    {
+      "type": "image",
+      "file": "media/stanislav-krawczyk-skull-ring/pain-ring-13.jpg",
+      "alt": "Stanislav Krawczyk Skull Ring – view 2",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/stanislav-krawczyk-skull-ring/pain-ring-8.jpg",
+      "alt": "Stanislav Krawczyk Skull Ring – view 3",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/stanislav-krawczyk-skull-ring/pain-ring-4.jpg",
+      "alt": "Stanislav Krawczyk Skull Ring – view 4",
+      "size": "normal"
+    },
+    {
+      "type": "image",
+      "file": "media/stanislav-krawczyk-skull-ring/pain-ring-5.jpg",
+      "alt": "Stanislav Krawczyk Skull Ring – view 5",
+      "size": "normal"
+    }
+  ]
+}
